@@ -25,27 +25,19 @@ Certifique-se de que você tem um sistema operacional compatível (Linux ou macO
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
+   git clone https://github.com/ibiapleo/jogo-pif-cesar.git
 
 2. Entre na pasta do projeto:
    ```bash
    cd projeto
 
-3. Instale a CLI-lib:
-   - No linux:
-      ```bash
-      sudo apt-get install cli-lib
-   - No macOS:
-      ```bash
-      brew install cli-lib
-
-4. Compile o código:
+3. Compile o código:
    ```bash
-      gcc src/*.c -o build/jogo -lcli
+   gcc ./src/main.c -I./include -o cli-lib-[A definir]
 
-5. Execute o jogo:
-      ```bash
-      ./build/jogo
+4. Execute o jogo:
+   ```bash
+   ./build/[A definir]
 
 ## Observações:
 - Este jogo utiliza a biblioteca CLI-lib para interações via terminal.
@@ -54,7 +46,7 @@ Certifique-se de que você tem um sistema operacional compatível (Linux ou macO
 
 ## Dependências:
 
-- CLI-lib (instruções de instalação fornecidas acima)
+- CLI-lib (instruções fornecidas acima)
 
 ## Licença:
 Este projeto é licenciado sob a [MIT License](LICENSE), veja o arquivo de licença para mais detalhes.
