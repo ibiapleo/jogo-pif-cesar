@@ -8,12 +8,12 @@
 #ifndef __KEYBOARD_H__
 #define __KEYBOARD_H__
 
-void keyboardInit();
+void keyboardInit(){};
 
-void keyboardDestroy();
+void keyboardDestroy(){};
     
-int keyhit();
+int keyhit(){};
 
-int readch();
+int readch(){};
 
 #endif /* __KEYBOARD_H__ */

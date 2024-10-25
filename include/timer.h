@@ -5,12 +5,12 @@
  * Based on "From C to C++ course - 2002"
 */
 
-void timerInit(int valueMilliSec);
+void timerInit(int valueMilliSec){};
 
-void timerDestroy();
+void timerDestroy(){};
 
-void timerUpdateTimer(int valueMilliSec);
+void timerUpdateTimer(int valueMilliSec){};
 
-int timerTimeOver();
+int timerTimeOver(){};
 
-void timerPrint();
+void timerPrint(){};
