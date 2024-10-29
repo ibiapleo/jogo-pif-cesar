@@ -23,6 +23,13 @@ void timerDestroy()
     delay = -1;
 }
 
+
+int randomNumber(){
+    int random;
+    random = now.tv_usec * 598;
+    return random;
+}
+
 void timerUpdateTimer(int valueMilliSec)
 {
     delay = valueMilliSec;
