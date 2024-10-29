@@ -5,7 +5,7 @@
  * Based on "From C to C++ course - 2002"
 */
 
-#include "../include/timer.h"
+#include "timer.h"
 #include <sys/time.h>
 #include <stdio.h>
 

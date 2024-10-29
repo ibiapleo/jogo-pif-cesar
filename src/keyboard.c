@@ -8,7 +8,7 @@
 #include <termios.h>
 #include <unistd.h>
 
-#include "../include/keyboard.h"
+#include "keyboard.h"
 
 static struct termios initialSettings, newSettings;
 static int peekCharacter;

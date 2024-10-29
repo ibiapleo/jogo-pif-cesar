@@ -156,12 +156,12 @@ static inline void screenBoxDisable()
  * 
  * @param drawBorders if not zero, draw borders on screen.
 */
-void screenInit(int drawBorders){};
+void screenInit(int drawBorders);
 
 /**
  * Clear the screen and restores to initial state.
 */
-void screenDestroy(){};
+void screenDestroy();
 
 /**
  * Move cursor to position (x,y)
@@ -169,13 +169,13 @@ void screenDestroy(){};
  * @param y y position
  */ 
 
-void screenGotoxy(int x, int y){};
+void screenGotoxy(int x, int y);
 
 /**
  * Define text colors 
  * @param fg foreground color, can assume values from BLACK to WHITE
  * @param bg background color, can assume values from BLACK to LIGHTGRAY
 */
-void screenSetColor(screenColor fg, screenColor bg){};
+void screenSetColor(screenColor fg, screenColor bg);
 
 #endif /* __SCREEN_H__ */

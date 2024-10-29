@@ -1,53 +1,20 @@
-# Programação Imperativa e Funcional - 2024.2 | CESAR School
+# cli-lib
+Command Line Interface library, for developing CLI applications and games in C. It has functions to access keyboard, screen and manage timing tasks.
 
-## Equipe:
-- Leonardo Ibiapina (@ibiapleo)
-- Ênio Bazante (@EnioBazante)
-- Gabriel Moraes (@GabrielMorais2)
+## Requirements
+- This library works with the follwing OS:
+   - Linux based (Ubuntu, etc)
+   - MacOS
+- It is necessary to have GCC installed.
 
-# Jogo: **A definir**
+## Usage 
+The file `main.c` has an example of how to use the Keyboard, Screen nd Timer functions. 
 
-## Descrição do jogo:
-Este jogo é uma [breve descrição do jogo], desenvolvido em linguagem C. Ele utiliza a biblioteca CLI-lib para interação em linha de comando e foi projetado para rodar exclusivamente em sistemas **Linux** e **macOS**.
+To build this example via command line, just switch to library root directory and type the following command:
+```
+$ gcc ./src/*.c -I./include -o cli-lib-example
+```
 
-O objetivo do jogo é [descrição do objetivo do jogo]. Os jogadores interagem com o jogo através do terminal, utilizando comandos que influenciam as ações e resultados.
-
-## Regras do Jogo:
-A definir
-
-## Compatibilidade:
-Este jogo **não é compatível com sistemas Windows** devido ao uso da biblioteca CLI-lib, que suporta apenas **Linux** e **macOS**.
-
-## Instruções de Compilação e Execução:
-
-### Pré-requisitos:
-Certifique-se de que você tem um sistema operacional compatível (Linux ou macOS) e que a CLI-lib está instalada. Siga as instruções abaixo para instalação e execução:
-
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/ibiapleo/jogo-pif-cesar.git
-
-2. Entre na pasta do projeto:
-   ```bash
-   cd projeto
-
-3. Compile o código:
-   ```bash
-   gcc ./src/main.c -I./include -o cli-lib-[A definir]
-
-4. Execute o jogo:
-   ```bash
-   ./build/[A definir]
-
-## Observações:
-- Este jogo utiliza a biblioteca CLI-lib para interações via terminal.
-
-- Windows não é suportado. Para jogar no Windows, recomenda-se utilizar uma máquina virtual ou ambiente WSL (Windows Subsystem for Linux), mas não é garantido que todas as funcionalidades do jogo funcionem corretamente.
-
-## Dependências:
-
-- CLI-lib (instruções fornecidas acima)
-
-## Licença:
-Este projeto é licenciado sob a [MIT License](LICENSE), veja o arquivo de licença para mais detalhes.
+To use this library to create your own apps, simply add source and header files to your project and compile it together with your own code, 
+replacing the main.c file to your own.
 

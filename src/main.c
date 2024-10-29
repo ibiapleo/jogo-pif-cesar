@@ -6,7 +6,6 @@
 */
 
 #include <string.h>
-#include <stdio.h>
 
 #include "screen.h"
 #include "keyboard.h"
