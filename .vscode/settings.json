@@ -59,6 +59,7 @@
   "files.associations": {
     "keyboard.h": "c",
     "screen.h": "c",
-    "time.h": "c"
+    "time.h": "c",
+    "timer.h": "c"
   }
 }
