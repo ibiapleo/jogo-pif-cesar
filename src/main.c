@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 #include <string.h>
 #include "screen.h"
 #include "keyboard.h"
@@ -83,4 +81,3 @@ int main() {
     timerDestroy();
     return 0;
 }
->>>>>>> 841c2d5d214c93a5f4e3f976b159759dbcb33877
