@@ -3,41 +3,53 @@
 #include "keyboard.h"
 #include "timer.h"
 #include "helicopter.h"
+#include "life.h"
+#include "enemy.h"
+#include <stdlib.h>
 
+int checkCollision(int heliX, int heliY, int enemyX, int enemyY) {
+    int heliWidth = 15;
+    int heliHeight = 4;
 
-int x = 0, y = 0;
+    return (enemyX >= heliX && enemyX < heliX + heliWidth && 
+            enemyY >= heliY && enemyY < heliY + heliHeight);
+}
 
-// Inicialização da biblioteca na main
 int main() {
     static int ch = 0;
     int YPos = 20;
     int XPos = 20;
-    
+    int enemyX = MAXX, enemyY = 10;
+    int life = LIFE;
+    int collisionDetected = 0;
+
     screenInit(1);
     keyboardInit();
     timerInit(50);
 
-    // O loop do jogo segue até pressionar enter (10)
     while (ch != 10) {
-        // Verifica se uma tecla foi pressionada
-        if (keyhit()) {
-            // Captura o caractere pressionado
-
-            ch = readch();
-            moveHelicopter(&ch, &YPos, &XPos);
-            // Atualiza a tela
-            screenUpdate();
-        }
-
-        // Atualiza o estado do jogo (mover elementos, verificarcolisões, etc)
-        if (timerTimeOver() == 1) {
-            // Atualiza a tela
-            screenUpdate();
-            printHelicopter(&XPos, &YPos);
-        }
+    if (keyhit()) {
+        ch = readch();
+        moveHelicopter(&ch, &YPos, &XPos);
+        screenUpdate();
     }
+
+    printHelicopter(&XPos, &YPos);
+    printLife(SCRSTARTY, SCRSTARTX, life);
+
+    if (timerTimeOver() == 1) {
+        moveEnemy(&enemyX, &enemyY);
+        if (checkCollision(XPos, YPos, enemyX, enemyY) && !collisionDetected) { 
+            life--;
+            collisionDetected = 1;
+        } else if (!checkCollision(XPos, YPos, enemyX, enemyY)) {
+            collisionDetected = 0;
+        }
+        printEnemy(enemyX, enemyY);
+        screenUpdate();
+    }
+}
     
-    // Desaloca os recursos utilizados pela cli-lib
     keyboardDestroy();
     screenDestroy();
     timerDestroy();
