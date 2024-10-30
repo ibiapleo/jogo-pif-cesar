@@ -7,6 +7,6 @@
 #ifndef __HELICOPTER_H__
 #define __HELICOPTER_H__
 
-void prtAndMoveHelicopter();
+void moveHelicopter();
 
 #endif /* __HELICOPTER_H__ */

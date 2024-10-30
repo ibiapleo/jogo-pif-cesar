@@ -6,24 +6,36 @@
 
 int x = 0, y = 0;
 
-void prtAndMoveHelicopter(int *command, int *YPos, int *XPos) 
+void printHelicopter(int *x, int *y) {
+    screenSetColor(CYAN, DARKGRAY);
+    screenGotoxy(*x, *y);
+    printf("     ______\n");
+    screenGotoxy(*x, *y + 1);
+    printf(" |X\\_.-╨─｡_\n");
+    screenGotoxy(*x, *y + 2);
+    printf(" ─´‾‾‷\\  °★¯]─\n");
+    screenGotoxy(*x, *y + 3);
+    printf("         ‾‾‾‾\n");
+}
+
+void moveHelicopter(int *command, int *YPos, int *XPos) 
 {
     screenSetColor(CYAN, DARKGRAY);
-    if (*command == 119 && *YPos > MINY + strlen("O")){
+    if (*command == 119 && *YPos > MINY + 5){
         *YPos -= 1;
-    } else if (*command == 115 && *YPos < MAXY - strlen("O")){
+    } else if (*command == 115 && *YPos < MAXY - 5){
         *YPos += 1;
     }
     
-    if (*command == 97 && *XPos > MINX + strlen("O")){
+    if (*command == 97 && *XPos > MINX + strlen(" ─´‾‾‷\\  °★¯]─\n")){
         *XPos -= 1;
-    } else if (*command == 100 && *XPos < MAXX - strlen("O") - 1){
+    } else if (*command == 100 && *XPos < MAXX - strlen(" ─´‾‾‷\\  °★¯]─\n") - 1){
         *XPos += 1;
     }
 
     screenDrawBorders();
     screenGotoxy(*XPos, *YPos);
-    printf("0");
+    printHelicopter(XPos, YPos);
     // Atualiza a tela
     screenUpdate();
 }
@@ -45,8 +57,7 @@ int main() {
             // Captura o caractere pressionado
 
             ch = readch();
-
-            prtAndMoveHelicopter(&ch, &YPos, &XPos);
+            moveHelicopter(&ch, &YPos, &XPos);
 
             screenClear();
             screenInit(1);
@@ -60,6 +71,7 @@ int main() {
         if (timerTimeOver() == 1) {
             // Atualiza a tela
             screenUpdate();
+            printHelicopter(&XPos, &YPos);
         }
     }
     
