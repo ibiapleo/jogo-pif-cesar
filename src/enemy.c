@@ -1,7 +1,7 @@
 #include "enemy.h"
 #include "timer.h"
 
-int randomPosition(int *XPos, int *YPos){
+void randomPosition(int *XPos, int *YPos){
     int newPos = (randomNumber()%8);
 
     // New position is based on a direction

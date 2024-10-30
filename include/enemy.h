@@ -1,3 +1,7 @@
-#include "timer.h"
+#ifndef __ENEMY_H__
+#define __ENEMY_H__
 
-int randomPosition(int *XPos, int *YPos){};
+void randomPosition(int *XPos, int *YPos);
+
+#endif /* __ENEMY_H__ */
+
