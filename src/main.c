@@ -1,4 +1,5 @@
 #include <string.h>
+#include "enemy.h"
 #include "screen.h"
 #include "keyboard.h"
 #include "timer.h"
@@ -57,13 +58,11 @@ int main() {
             // Captura o caractere pressionado
 
             ch = readch();
-            moveHelicopter(&ch, &YPos, &XPos);
+
+
 
             screenClear();
             screenInit(1);
-            screenGotoxy(((randomNumber()*327)%44), (randomNumber()%30));
-            printf("0");
-            // Atualiza a tela
             screenUpdate();
         }
 

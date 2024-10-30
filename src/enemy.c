@@ -12,6 +12,7 @@ void randomPosition(int *XPos, int *YPos){
 
 
 
+
     if (newPos == 0){
         *YPos -= 1;
     }else if (newPos == 1){
