@@ -32,6 +32,5 @@ void moveHelicopter(int *command, int *YPos, int *XPos)
     screenDrawBorders();
     screenGotoxy(*XPos, *YPos);
     printHelicopter(XPos, YPos);
-    // Atualiza a tela
     screenUpdate();
 }

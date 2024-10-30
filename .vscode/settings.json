@@ -60,6 +60,8 @@
     "keyboard.h": "c",
     "screen.h": "c",
     "time.h": "c",
-    "timer.h": "c"
+    "timer.h": "c",
+    "life.h": "c",
+    "enemy.h": "c"
   }
 }
