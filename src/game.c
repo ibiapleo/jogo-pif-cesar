@@ -1,7 +1,7 @@
 #include "game.h"
 #include "screen.h"
 #include "enemy.h"
-#include "helicopter.h"
+#include "wing.h"
 #include "life.h"
 #include "timer.h"
 #include "keyboard.h"
@@ -16,7 +16,7 @@ void initializeGame(int *life, int enemyX[], int enemyY[], int enemyTimers[]) {
 }
 
 void updateGame(int *YPos, int *XPos, int *life, int enemyX[], int enemyY[], int enemyTimers[]) {
-    printHelicopter(XPos, YPos);
+    printWing(XPos, YPos);
     printLife(SCRSTARTY, SCRSTARTX, *life);
     screenUpdate();
 
@@ -25,6 +25,7 @@ void updateGame(int *YPos, int *XPos, int *life, int enemyX[], int enemyY[], int
         screenSetColor(CYAN, DARKGRAY);
         screenDrawBorders();
         updateEnemies(*XPos, *YPos, life, enemyX, enemyY, enemyTimers);
+        moveBullets();
     }
 }
 

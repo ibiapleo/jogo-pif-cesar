@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "menu.h"
+#include "wing.h"
 #include "game.h"
 #include "screen.h"
 #include "keyboard.h"
@@ -40,7 +41,7 @@ int main() {
 
     keyboardInit();
     screenInit(1);
-    Mix_PlayMusic(backgroundMusic, -1);
+    //Mix_PlayMusic(backgroundMusic, -1);
     
     while (1) {
         if (isPlaying == 0) {
@@ -50,7 +51,8 @@ int main() {
         } else {
             if (keyhit()) {
                 ch = readch();
-                moveHelicopter(&ch, &YPos, &XPos);
+                moveWing(&ch, &YPos, &XPos);
+                moveWingBullet(&XPos, &YPos, &ch);
             }
 
             updateGame(&YPos, &XPos, &life, enemyX, enemyY, enemyTimers);
@@ -63,8 +65,8 @@ int main() {
     }
 
     cleanUp();
-    Mix_FreeMusic(backgroundMusic);
-    Mix_CloseAudio();
-    SDL_Quit();
+    //Mix_FreeMusic(backgroundMusic);
+    //Mix_CloseAudio();
+    //SDL_Quit();
     return 0;
 }

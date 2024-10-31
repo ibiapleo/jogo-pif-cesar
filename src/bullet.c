@@ -3,11 +3,10 @@
 #include <string.h>
 
 #define MAX_BULLETS 12
-
 typedef struct {
     int x;
     int y;
-    int status; // ativa ou inativa
+    int status;
 } Bullet;
 
 Bullet myBullets[MAX_BULLETS];
@@ -26,26 +25,26 @@ void clearBullet(int XBullet, int YBullet) {
 
 void shootBullets(int *XPos, int *YPos) {
     for (int i = 0; i < MAX_BULLETS; i++) {
-        if (myBullets[i].status != 1)  { // Encontra uma bala inativa
-            myBullets[i].x = *XPos + 6; // Ajusta a posição X da bala com a nave
-            myBullets[i].y = *YPos + 2; // Ajusta a posição Y da bala com a nave
-            myBullets[i].status = 1; // Marca a bala como ativa
-            printBullet(myBullets[i].x, myBullets[i].y); // Desenha a nova bala
-            break; // Sai do loop após adicionar a nova bala
+        if (myBullets[i].status != 1)  {
+            myBullets[i].x = *XPos + 6;
+            myBullets[i].y = *YPos + 2;
+            myBullets[i].status = 1;
+            printBullet(myBullets[i].x, myBullets[i].y);
+            break;
         }
     }
 }
 
 void moveBullets() {
     for (int i = 0; i < MAX_BULLETS; i++) {
-        if (myBullets[i].status == 1) { //Encontra uma bala ativa
-            clearBullet(myBullets[i].x, myBullets[i].y); // Limpa a posicao antiga da bala
-            myBullets[i].x++; // Movimenta a bala uma posição
+        if (myBullets[i].status == 1) {
+            clearBullet(myBullets[i].x, myBullets[i].y);
+            myBullets[i].x++;
             
             if (myBullets[i].x >= MAXX) {
-                myBullets[i].status = 0; // Desativa a bala se sair da tela
+                myBullets[i].status = 0;
             } else {
-                printBullet(myBullets[i].x, myBullets[i].y); // Desenha a nova bala
+                printBullet(myBullets[i].x, myBullets[i].y);
             }
         }
     }
