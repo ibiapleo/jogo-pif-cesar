@@ -18,9 +18,26 @@ void moveEnemy(int *enemyX, int *enemyY) {
 
     *enemyX -= 1;
     if (*enemyX < 0) {
+        clearEnemy(*enemyX + 3, *enemyY);
         *enemyX = MAXX; 
-        *enemyY = rand() % (MAXY - 4) + 1; 
+        *enemyY = rand() % (MAXY - 4) + 1;
     }
+}
+
+void initializeEnemies(int enemyX[], int enemyY[], int enemyTimers[]) {
+    for (int i = 0; i < NUM_ENEMIES; i++)
+    {
+        enemyX[i] = MAXX;
+        enemyY[i] = rand() % (MAXY - 4) + 1;
+        enemyTimers[i] = rand() % 50 + 20;
+    }
+}
+
+
+void clearEnemy(int enemyX, int enemyY) {
+    screenGotoxy(enemyY, enemyX);
+    printf("   ");
+    screenUpdate();
 }
 
 void randomPosition(int *XPos, int *YPos) {
