@@ -58,6 +58,14 @@
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
     "keyboard.h": "c",
-    "screen.h": "c"
+    "screen.h": "c",
+    "time.h": "c",
+    "timer.h": "c",
+    "life.h": "c",
+    "enemy.h": "c",
+    "unistd.h": "c",
+    "stdlib.h": "c",
+    "helicopter.h": "c",
+    "gameover.h": "c"
   }
 }

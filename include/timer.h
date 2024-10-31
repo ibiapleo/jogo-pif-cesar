@@ -13,4 +13,6 @@ void timerUpdateTimer(int valueMilliSec);
 
 int timerTimeOver();
 
+int randomNumber();
+
 void timerPrint();
