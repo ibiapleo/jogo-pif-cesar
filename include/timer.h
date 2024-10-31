@@ -16,3 +16,5 @@ int timerTimeOver();
 int randomNumber();
 
 void timerPrint();
+
+int getTimeDiff();

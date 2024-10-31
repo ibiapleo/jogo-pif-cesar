@@ -23,28 +23,54 @@ void moveEnemy(int *enemyX, int *enemyY) {
     }
 }
 
-void randomPosition(int *XPos, int *YPos) {
-    int newPos = (randomNumber() % 8);
+void moveMinion(int *XPos, int *YPos) {
 
-    if (newPos == 0) {
-        *YPos -= 1;
-    } else if (newPos == 1) {
-        *XPos += 1;
-        *YPos -= 1;
-    } else if (newPos == 2) {
-        *XPos += 1;
-    } else if (newPos == 3) {
-        *XPos += 1;
-        *YPos += 1;
-    } else if (newPos == 4) {
-        *YPos += 1;
-    } else if (newPos == 5) {
-        *XPos -= 1;
-        *YPos += 1;
-    } else if (newPos == 6) {
-        *XPos -= 1;
-    } else if (newPos == 7) {
-        *XPos -= 1;
-        *YPos -= 1;
+    int timediff = getTimeDiff();
+
+
+
+
+    int newPos = (randomNumber() % 8);
+    if (timediff > 50){
+
+        screenGotoxy(*XPos + 1, *YPos);
+        printf("          \n");
+        screenGotoxy(*XPos, *YPos + 1);
+        printf("          \n");
+
+        if (newPos == 0 && *YPos > MINY) {
+            *YPos -= 1;
+        } else if (newPos == 1 && *YPos > MINY && *XPos < MAXX) {
+            *XPos += 1;
+            *YPos -= 1;
+        } else if (newPos == 2 && *XPos < MAXX)  {
+            *XPos += 1;
+        } else if (newPos == 3 && *YPos < MAXY && *XPos < MAXX) {
+            *XPos += 1;
+            *YPos += 1;
+        } else if (newPos == 4 && *YPos < MAXY)  {
+            *YPos += 1;
+        } else if (newPos == 5 && *YPos < MAXY && *XPos > MINX) {
+            *XPos -= 1;
+            *YPos += 1;
+        } else if (newPos == 6 && *XPos > MINX) {
+            *XPos -= 1;
+        } else if (newPos == 7 && *YPos > MINY && *XPos > MINX) {
+            *XPos -= 1;
+            *YPos -= 1;
+        }
+        timediff = getTimeDiff();
     }
+}
+
+void printMinion(int *x, int *y) {
+    screenSetColor(GREEN, DARKGRAY);
+
+    
+    screenGotoxy(*x + 1, *y);
+    printf("_/@\\_\n");
+    screenGotoxy(*x, *y + 1);
+    printf("|\\WVW/|\n");
+    
+    screenUpdate();
 }

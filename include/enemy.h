@@ -2,8 +2,9 @@
 #define __ENEMY_H__
 
 void printEnemy(int x, int y);
-void randomPosition(int *XPos, int *YPos);
+void moveMinion(int *XPos, int *YPos);
 void moveEnemy(int *XPos, int *YPos);
+void printMinion();
 
 #endif /* __ENEMY_H__ */
 
