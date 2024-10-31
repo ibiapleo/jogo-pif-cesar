@@ -24,9 +24,9 @@ void moveEnemy(int *enemyX, int *enemyY) {
     }
 }
 
-<<<<<<< HEAD
-void moveMinion(int *XPos, int *YPos) {
-=======
+
+
+
 void initializeEnemies(int enemyX[], int enemyY[], int enemyTimers[]) {
     for (int i = 0; i < NUM_ENEMIES; i++)
     {
@@ -43,17 +43,13 @@ void clearEnemy(int enemyX, int enemyY) {
     screenUpdate();
 }
 
-void randomPosition(int *XPos, int *YPos) {
+void moveMinion(int *XPos, int *YPos) {
     int newPos = (randomNumber() % 8);
->>>>>>> developer
 
     int timediff = getTimeDiff();
 
 
-
-
-    int newPos = (randomNumber() % 8);
-    if (timediff > 50){
+    if (timediff > 75){
 
         screenGotoxy(*XPos + 1, *YPos);
         printf("          \n");
