@@ -62,6 +62,10 @@
     "time.h": "c",
     "timer.h": "c",
     "life.h": "c",
-    "enemy.h": "c"
+    "enemy.h": "c",
+    "unistd.h": "c",
+    "stdlib.h": "c",
+    "helicopter.h": "c",
+    "gameover.h": "c"
   }
 }
