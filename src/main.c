@@ -5,7 +5,6 @@
 #include "screen.h"
 #include "keyboard.h"
 #include "timer.h"
-#include "helicopter.h"
 #include "enemy.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>

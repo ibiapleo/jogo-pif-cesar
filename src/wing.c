@@ -43,3 +43,5 @@ void wingTrail(int x, int y) {
         printf("%c ", trailArray[i]);
     }
 }
+
+
