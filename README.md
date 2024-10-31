@@ -5,15 +5,19 @@
 - Ênio Bazante (@EnioBazante)
 - Gabriel Moraes (@GabrielMorais2)
 
-# Jogo: **A definir**
+# Jogo: Wobble Wing
 
 ## Descrição do jogo:
-Este jogo é uma [breve descrição do jogo], desenvolvido em linguagem C. Ele utiliza a biblioteca CLI-lib para interação em linha de comando e foi projetado para rodar exclusivamente em sistemas **Linux** e **macOS**.
+O Wobble Wing é um jogo do estilo Bullet Hell, onde você deve desviar de balas enquanto derrota hordas de inimigos, desenvolvido em linguagem C. Ele utiliza a biblioteca CLI-lib para interação em linha de comando e foi projetado para rodar exclusivamente em sistemas **Linux** e **macOS**.
 
-O objetivo do jogo é [descrição do objetivo do jogo]. Os jogadores interagem com o jogo através do terminal, utilizando comandos que influenciam as ações e resultados.
+O objetivo do jogo é baseado na movimentação e na capacidade de atirar do seu helicóptero. Inimigos tentarão lhe atingir, você deverá desviar das balas enquanto tenta acertá-los para acabar com todos o mais rápido possível e conseguir a maior pontuação! . Os jogadores interagem com o jogo através do terminal, utilizando comandos que influenciam as ações e resultados.
 
 ## Regras do Jogo:
-A definir
+- Utilize as teclas "W A S D" para se movimentar.
+- Utiliza a tecla "SPACE" para atirar
+- Desvie das balas dos inimigos
+- Se for atingido, perde vida
+- Acerte os seus inimigos para faze-los sumir.
 
 ## Compatibilidade:
 Este jogo **não é compatível com sistemas Windows** devido ao uso da biblioteca CLI-lib, que suporta apenas **Linux** e **macOS**.
@@ -32,7 +36,7 @@ Certifique-se de que você tem um sistema operacional compatível (Linux ou macO
    cd projeto
 3. Compile o código:
    ```bash
-      gcc ./src/*.c -I./include -o cli-lib-[A definir]
+      gcc ./src/.c -I./include -o cli-lib-[A definir]
 
 4. Execute o jogo:
       ```bash
