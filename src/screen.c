@@ -65,6 +65,11 @@ void screenDestroy()
     screenShowCursor();
 }
 
+void screenPrintCenter(const char* text) {
+    int length = strlen(text);
+    printf("%s", text);
+}
+
 void screenGotoxy(int x, int y)
 {
     x = ( x<0 ? 0 : x>=MAXX ? MAXX-1 : x);

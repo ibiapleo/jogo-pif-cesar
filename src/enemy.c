@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "screen.h"
 #include <stdlib.h> 
+#include "collision.h"
 
 void printEnemy(int x, int y) {
     if (x >= 0 && y >= 0 && x < MAXX && y < MAXY) {
@@ -33,6 +34,31 @@ void initializeEnemies(int enemyX[], int enemyY[], int enemyTimers[]) {
     }
 }
 
+void updateEnemies(int XPos, int YPos, int *life, int enemyX[], int enemyY[], int enemyTimers[]) {
+    for (int i = 0; i < NUM_ENEMIES; i++) {
+        if (enemyTimers[i] > 0) {
+            enemyTimers[i]--;
+        } else {
+            moveEnemy(&enemyX[i], &enemyY[i]);
+            if (checkCollision(XPos, YPos, enemyX[i], enemyY[i])) {
+                clearEnemy(enemyX[i], enemyY[i]);
+                (*life)--;
+                enemyX[i] = MAXX;
+                enemyY[i] = rand() % (MAXY - 4) + 1;
+                enemyTimers[i] = rand() % 50 + 20;
+            } else {
+                printEnemy(enemyX[i], enemyY[i]);
+            }
+
+            if (enemyX[i] < 0) {
+                enemyX[i] = MAXX;
+                enemyY[i] = rand() % (MAXY - 4) + 1;
+                enemyTimers[i] = rand() % 50 + 20;
+            }
+        }
+    }
+    screenUpdate();
+}
 
 void clearEnemy(int enemyX, int enemyY) {
     screenGotoxy(enemyY, enemyX);
