@@ -3,7 +3,7 @@
 #include "screen.h"
 #include "keyboard.h"
 #include "timer.h"
-#include "helicopter.h"
+#include "wing.h"
 #include "life.h"
 #include "enemy.h"
 #include "gameover.h"
@@ -46,7 +46,7 @@ void updateAndPrintEnemies(int XPos, int YPos, int *life, int enemyX[], int enem
 
 int main() {
     static int ch = 0;
-    int YPos = 20, XPos = 20;
+    int YPos = 7, XPos = 20;
     int life;
 
     int enemyX[NUM_ENEMIES], enemyY[NUM_ENEMIES];
@@ -57,10 +57,11 @@ int main() {
     while (ch != 10) {
         if (keyhit()) {
             ch = readch();
-            moveHelicopter(&ch, &YPos, &XPos);
+            moveWing(&ch, &YPos, &XPos);
+            moveWingBullet(&XPos, &YPos, &ch);
         }
 
-        printHelicopter(&XPos, &YPos);
+        printWing(&XPos, &YPos);
         printLife(SCRSTARTY, SCRSTARTX, life);
         screenUpdate();
 
@@ -68,7 +69,9 @@ int main() {
             screenClear();
             screenSetColor(CYAN, DARKGRAY);
             screenDrawBorders();
-            updateAndPrintEnemies(XPos, YPos, &life, enemyX, enemyY, enemyTimers); 
+            // updateAndPrintEnemies(XPos, YPos, &life, enemyX, enemyY, enemyTimers);
+            moveBullets(); 
+            
         }
 
         if (life <= 0) {
