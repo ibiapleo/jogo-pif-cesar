@@ -10,6 +10,7 @@
 #define __SCREEN_H__
 
 #include <stdio.h>
+#include <string.h>
 
 // Terminal control sequences
 #define ESC            "\033"
@@ -179,5 +180,7 @@ void screenGotoxy(int x, int y);
  * @param bg background color, can assume values from BLACK to LIGHTGRAY
 */
 void screenSetColor(screenColor fg, screenColor bg);
+
+void screenPrintCenter(const char* text);
 
 #endif /* __SCREEN_H__ */

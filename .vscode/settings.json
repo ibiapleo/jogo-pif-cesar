@@ -66,6 +66,10 @@
     "unistd.h": "c",
     "stdlib.h": "c",
     "helicopter.h": "c",
-    "gameover.h": "c"
+    "gameover.h": "c",
+    "stdio.h": "c",
+    "collision.h": "c",
+    "menu.h": "c",
+    "sdl_mixer.h": "c"
   }
 }

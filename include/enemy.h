@@ -7,6 +7,7 @@ void randomPosition(int *XPos, int *YPos);
 void moveEnemy(int *XPos, int *YPos);
 void initializeEnemies(int enemyX[], int enemyY[], int enemyTimers[]);
 void clearEnemy(int enemyX, int enemyY);
+void updateEnemies(int XPos, int YPos, int *life, int enemyX[], int enemyY[], int enemyTimers[]);
 
 #endif /* __ENEMY_H__ */
 

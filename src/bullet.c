@@ -56,4 +56,3 @@ void moveWingBullet(int *XPos, int *YPos, int *command) {
         shootBullets(XPos, YPos);
     }
  }
-
