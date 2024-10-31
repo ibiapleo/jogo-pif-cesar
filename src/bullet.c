@@ -8,6 +8,7 @@ typedef struct {
     int x;
     int y;
     int status; // ativa ou inativa
+    int friendly;
 } Bullet;
 
 Bullet myBullets[MAX_BULLETS];
