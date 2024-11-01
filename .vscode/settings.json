@@ -71,6 +71,7 @@
     "collision.h": "c",
     "menu.h": "c",
     "sdl_mixer.h": "c",
-    "wing.h": "c"
+    "wing.h": "c",
+    "game.h": "c"
   }
 }

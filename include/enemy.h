@@ -14,8 +14,8 @@ void printMinion(int x, int y);
 void moveMinion(int *XPos, int *YPos);
 void initializeMinions(int enemyX[], int enemyY[], int enemyTimers[]);
 void clearMinion(int enemyX, int enemyY);
-void updateMinions(int XPos, int YPos, int *life, int enemyX[], int enemyY[], int enemyTimers[]);
-void updateEnemies(int XPos, int YPos, int *life, int enemyX[], int enemyY[], int enemyTimers[]);
+void updateMinions(int XPos, int YPos, int *life, int MinionX[], int MinionY[], int MinionTimers[]);
+
 
 #endif /* __ENEMY_H__ */
 
