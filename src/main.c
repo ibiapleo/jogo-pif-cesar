@@ -47,29 +47,27 @@ void updateAndPrintEnemies(int XPos, int YPos, int *life, int enemyX[], int enem
 int main() {
     static int ch = 0;
     int YPos = 20, XPos = 20;
-    int life;
+    int life, isPlaying = 0, selectedOption = 0;
+    int enemyX[NUM_ENEMIES], enemyY[NUM_ENEMIES], enemyTimers[NUM_ENEMIES];
+    int minionX[NUM_MINIONS], minionY[NUM_MINIONS], minionTimers[NUM_MINIONS];
 
-    int enemyX[NUM_ENEMIES], enemyY[NUM_ENEMIES];
-    int enemyTimers[NUM_ENEMIES];
+    keyboardInit();
+    screenInit(1);
+    //Mix_PlayMusic(backgroundMusic, -1);
     
-    initializeGame(&life, enemyX, enemyY, enemyTimers);
-
-    while (ch != 10) {
-        if (keyhit()) {
+    while (1) {
+        if (isPlaying == 0) {
+            showMainMenu(selectedOption);
             ch = readch();
-            moveHelicopter(&ch, &YPos, &XPos);
-        }
+            handleMenuInput(ch, &selectedOption, &isPlaying, &life, enemyX, enemyY, enemyTimers, minionX, minionY, minionTimers);
+        } else {
+            if (keyhit()) {
+                ch = readch();
+                moveWing(&ch, &YPos, &XPos);
+                moveWingBullet(&XPos, &YPos, &ch);
+            }
 
-        printHelicopter(&XPos, &YPos);
-        printLife(SCRSTARTY, SCRSTARTX, life);
-        screenUpdate();
-
-        if (timerTimeOver() == 1) {
-            screenClear();
-            screenSetColor(CYAN, DARKGRAY);
-            screenDrawBorders();
-            updateAndPrintEnemies(XPos, YPos, &life, enemyX, enemyY, enemyTimers); 
-        }
+            updateGame(&YPos, &XPos, &life, enemyX, enemyY, enemyTimers, minionX, minionY, minionTimers);
 
         if (life <= 0) {
             handleGameOver();
