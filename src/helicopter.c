@@ -34,3 +34,4 @@ void moveHelicopter(int *command, int *YPos, int *XPos)
     printHelicopter(XPos, YPos);
     screenUpdate();
 }
+
