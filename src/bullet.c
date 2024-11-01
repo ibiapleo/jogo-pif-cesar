@@ -2,7 +2,9 @@
 #include "screen.h"
 #include <string.h>
 
-#define MAX_BULLETS 12
+
+
+
 typedef struct {
     int x;
     int y;

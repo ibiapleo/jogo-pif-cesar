@@ -72,6 +72,8 @@
     "menu.h": "c",
     "sdl_mixer.h": "c",
     "wing.h": "c",
-    "game.h": "c"
+    "game.h": "c",
+    "string.h": "c",
+    "bullet.h": "c"
   }
 }

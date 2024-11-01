@@ -5,6 +5,11 @@
 #include <stdlib.h> 
 #include "collision.h"
 #include <sys/time.h>
+#include "bullet.h"
+#include "bullet.c"
+
+
+
 
 static struct timeval timer, now;
 
@@ -15,8 +20,9 @@ void printEnemy(int x, int y) {
     }
 }
 
-void moveEnemy(int *enemyX, int *enemyY) {
 
+
+void moveEnemy(int *enemyX, int *enemyY) {
 
     if (*enemyX >= 0) {
         printEnemy(*enemyX, *enemyY);
@@ -33,7 +39,6 @@ void moveEnemy(int *enemyX, int *enemyY) {
 
     }
 }
-
 
 
 
@@ -129,15 +134,8 @@ void printMinion(int x, int y) {
 
 }
 
-int minionSpeed()
-{
-    gettimeofday(&now, NULL);
-    long diff = (((now.tv_sec - timer.tv_sec) * 1000000) + now.tv_usec - timer.tv_usec)/1000;
-    return (int) diff;
-}
 
 void moveMinion(int *minionX, int *minionY) {
-    int timediff;
 
     if (*minionX >= 0) {
         printMinion(*minionX, *minionY);
@@ -150,19 +148,14 @@ void moveMinion(int *minionX, int *minionY) {
         *minionY = rand() % (MAXY - 4) + 1;
     }
 
-    timediff = minionSpeed();
-
-    if (timediff > 1000){
-        if ((randomNumber() % 2) == 1){
-            *minionY += 1;
-        }else {
-            *minionY -= 1;
-        }
-
+    if ((randomNumber() % 2) == 1){
+        *minionY += 1;
+    }else {
+        *minionY -= 1;
     }
 
-
 }
+
 
 void initializeMinions(int MinionX[], int MinionY[], int MinionTimers[]) {
     for (int i = 0; i < NUM_MINIONS; i++)
@@ -171,7 +164,10 @@ void initializeMinions(int MinionX[], int MinionY[], int MinionTimers[]) {
         MinionY[i] = (rand() % (MAXY - 4)) + 2;
         MinionTimers[i] = rand() % 50 + 20;
     }
+
 }
+
+
 
 void updateMinions(int XPos, int YPos, int *life, int MinionX[], int MinionY[], int MinionTimers[]) {
     for (int i = 0; i < NUM_MINIONS; i++) {
@@ -194,7 +190,14 @@ void updateMinions(int XPos, int YPos, int *life, int MinionX[], int MinionY[], 
                 MinionY[i] = rand() % (MAXY - 4) + 1;
                 MinionTimers[i] = rand() % 50 + 20;
             }
+        }  
+        for (int i = 0; i < MAX_BULLETS; i++) {
+
+            if (checkCollision(XPos, YPos, MinionX[i], MinionY[i])) {
+                
+            }
         }
+
     }
     screenUpdate();
 }
