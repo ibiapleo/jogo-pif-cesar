@@ -6,7 +6,7 @@
 #include "collision.h"
 #include <sys/time.h>
 #include "bullet.h"
-#include "bullet.c"
+
 
 
 
@@ -193,9 +193,16 @@ void updateMinions(int XPos, int YPos, int *life, int MinionX[], int MinionY[], 
         }  
         for (int i = 0; i < MAX_BULLETS; i++) {
 
-            if (checkCollision(XPos, YPos, MinionX[i], MinionY[i])) {
-                
-            }
+                for (int i = 0; i < MAX_BULLETS; i++) {
+                    for (int j = 0; j < NUM_MINIONS; j++){
+                        int bulletX = sendBulletsLocation(i)/1000, bulletY = sendBulletsLocation(i) % 1000;
+                        if (checkCollision(MinionX[j], MinionY[j], bulletX, bulletY )&& bulletX < MAXX) {
+                            MinionX[j] = MAXX;
+                            MinionY[j] = rand() % (MAXY - 4) + 1;
+                            MinionTimers[j] = rand() % 50 + 20;
+                        }
+                    }
+                }   
         }
 
     }

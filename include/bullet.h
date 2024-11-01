@@ -8,6 +8,8 @@
 #define __BULLET_H__
 #define MAX_BULLETS 12
 
+int sendBulletsLocation();
+
 void printBullet();
 
 void clearBullet();

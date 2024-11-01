@@ -2,9 +2,7 @@
 #include "screen.h"
 #include <string.h>
 
-
-
-
+#define MAX_BULLETS 12
 typedef struct {
     int x;
     int y;
@@ -28,7 +26,7 @@ void clearBullet(int XBullet, int YBullet) {
 void shootBullets(int *XPos, int *YPos) {
     for (int i = 0; i < MAX_BULLETS; i++) {
         if (myBullets[i].status != 1)  {
-            myBullets[i].x = *XPos + 6;
+            myBullets[i].x = *XPos + 10;
             myBullets[i].y = *YPos + 2;
             myBullets[i].status = 1;
             printBullet(myBullets[i].x, myBullets[i].y);
@@ -51,7 +49,10 @@ void moveBullets() {
         }
     }
 }
-
+int sendBulletsLocation(int i){
+    int j = ((myBullets[i].x * 1000) + myBullets[i].y);
+    return j;
+}
 void moveWingBullet(int *XPos, int *YPos, int *command) {
      if (*command == 32) { // Espaço
         shootBullets(XPos, YPos);
