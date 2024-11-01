@@ -3,7 +3,7 @@
 #include <string.h>
 
 void printWing(int *x, int *y) {
-    screenSetColor(CYAN, DARKGRAY);
+    screenSetColor(YELLOW, DARKGRAY);
     screenGotoxy(*x, *y);
 
     printf("   __");

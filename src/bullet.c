@@ -26,7 +26,7 @@ void clearBullet(int XBullet, int YBullet) {
 void shootBullets(int *XPos, int *YPos) {
     for (int i = 0; i < MAX_BULLETS; i++) {
         if (myBullets[i].status != 1)  {
-            myBullets[i].x = *XPos + 6;
+            myBullets[i].x = *XPos + 10;
             myBullets[i].y = *YPos + 2;
             myBullets[i].status = 1;
             printBullet(myBullets[i].x, myBullets[i].y);

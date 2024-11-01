@@ -18,7 +18,7 @@ void showMainMenu(int selectedOption) {
 
     screenSetColor(WHITE, BLACK);
     screenGotoxy(SCRSTARTX + 22, SCRSTARTY + 8);
-    screenPrintCenter("Use as setas para mover e Enter para selecionar");
+    screenPrintCenter("Use o WASD para mover e Enter para selecionar");
     screenUpdate();
 }
 

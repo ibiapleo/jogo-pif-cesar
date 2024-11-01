@@ -21,7 +21,7 @@ Mix_Music* initializeAudio() {
         return NULL;
     }
 
-    Mix_Music *backgroundMusic = Mix_LoadMUS("musicas/audio.mp3");
+    Mix_Music *backgroundMusic = Mix_LoadMUS("../musicas/audio.mp3");
     if (!backgroundMusic) {
         fprintf(stderr, "Erro ao carregar música: %s\n", Mix_GetError());
         return NULL;
@@ -41,7 +41,7 @@ int main() {
 
     keyboardInit();
     screenInit(1);
-    //Mix_PlayMusic(backgroundMusic, -1);
+    Mix_PlayMusic(backgroundMusic, -1);
     
     while (1) {
         if (isPlaying == 0) {
@@ -65,8 +65,8 @@ int main() {
     }
 
     cleanUp();
-    //Mix_FreeMusic(backgroundMusic);
-    //Mix_CloseAudio();
-    //SDL_Quit();
+    Mix_FreeMusic(backgroundMusic);
+    Mix_CloseAudio();
+    SDL_Quit();
     return 0;
 }
