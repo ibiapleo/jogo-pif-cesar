@@ -1,5 +1,7 @@
 # Programação Imperativa e Funcional - 2024.2 | CESAR School
 
+# Código atualizado se encontra na developer.
+
 ## Equipe:
 - Leonardo Ibiapina (@ibiapleo)
 - Ênio Bazante (@EnioBazante)
