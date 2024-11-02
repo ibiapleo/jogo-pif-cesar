@@ -2,8 +2,8 @@
 #include "screen.h"
 #include "timer.h"
 
-#define MAX_STARS 20
-#define STARS_SPEED 10
+#define MAX_STARS 10
+#define STARS_SPEED 10000000000000
 int contador = 0;
 
 typedef struct
@@ -25,21 +25,21 @@ void initializaStars(){
 
         number = randomNumber();
 
-        while (number > MINX && number < MAXX)
+        while (number < MINX + 1 && number > MAXX - 1)
         {
             number = randomNumber();
         }
 
-        stars[i].XPos = randomNumber();
+        stars[i].XPos = number;
 
-        while (number > MINY && number < MAXY)
+        while (number < MINY + 1 && number > MAXY - 1)
         {
             number = randomNumber();
         }   
 
-        stars[i].YPos = randomNumber();
+        stars[i].YPos = number;
         stars[i].distance = (i % 2);
-        stars[i].star[0] = "*";
+        stars[i].star = '+';
 
     }
 }
@@ -48,11 +48,13 @@ void printStars(){
     for (int i = 0; i < MAX_STARS; i++){
         if (stars[i].distance == 0){
             screenSetColor(LIGHTGRAY, BLACK);
-            screenGotoxy(randomNumber() % MAXX, randomNumber() % MAXY);
+            screenGotoxy(stars[i].XPos, stars[i].YPos);
+            printf("*");
         }
         if (stars[i].distance == 1){
             screenSetColor(DARKGRAY, BLACK);
-            screenGotoxy(randomNumber() % MAXX, randomNumber() % MAXY);
+            screenGotoxy(stars[i].XPos, stars[i].YPos);
+            printf("*");
         }
     }
     screenUpdate();
