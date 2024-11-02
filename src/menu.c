@@ -2,6 +2,8 @@
 #include "screen.h"
 #include "keyboard.h"
 #include "game.h"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 
 void showMainMenu(int selectedOption) {
     screenClear();
@@ -22,12 +24,13 @@ void showMainMenu(int selectedOption) {
     screenUpdate();
 }
 
-void handleMenuInput(int ch, int* selectedOption, int* isPlaying, int* life, int enemyX[], int enemyY[], int enemyTimers[]) {
+void handleMenuInput(int ch, int* selectedOption, int* isPlaying, int* life, int enemyX[], int enemyY[], int enemyTimers[], Mix_Music *menuMusic, Mix_Music *gameTrack) {
     if (ch == 119) *selectedOption = (*selectedOption - 1 + 3) % 3;
     else if (ch == 115) *selectedOption = (*selectedOption + 1) % 3;
     else if (ch == 10) {
         if (*selectedOption == 0) {
-            initializeGame(life, enemyX, enemyY, enemyTimers);
+            Mix_FreeMusic(menuMusic);
+            initializeGame(life, enemyX, enemyY, enemyTimers, gameTrack);
             *isPlaying = 1;
         }
     }

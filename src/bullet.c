@@ -1,6 +1,9 @@
 #include "bullet.h"
 #include "screen.h"
 #include <string.h>
+#include "musics.h"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 
 #define MAX_BULLETS 12
 typedef struct {
@@ -13,7 +16,7 @@ Bullet myBullets[MAX_BULLETS];
 
 void printBullet(int XBullet, int YBullet) {
     screenGotoxy(XBullet, YBullet);
-    printf(" ⁍ ");
+    printf(" ‣ ");
     screenUpdate();
 }  
 
