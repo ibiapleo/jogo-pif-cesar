@@ -20,8 +20,8 @@ void initializeGame(int *life, int enemyX[], int enemyY[], int enemyTimers[], in
 
 void updateGame(int *YPos, int *XPos, int *life, int enemyX[], int enemyY[], int enemyTimers[], int minionX[], int minionY[], int minionTimers[]) {
     printWing(XPos, YPos);
-    printStars();
-    moveStars();
+
+
     printLife(SCRSTARTY, SCRSTARTX, *life);
     screenUpdate();
 
@@ -32,6 +32,9 @@ void updateGame(int *YPos, int *XPos, int *life, int enemyX[], int enemyY[], int
         screenDrawBorders();
         updateEnemies(*XPos, *YPos, life, enemyX, enemyY, enemyTimers);
         updateMinions(*XPos, *YPos, life, minionX, minionY, minionTimers);
+        moveStars();
+        printStars();
+
         moveBullets();
     }
 }
