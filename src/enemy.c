@@ -14,6 +14,7 @@
 static struct timeval timer, now;
 
 void printEnemy(int x, int y) {
+    screenSetColor(RED, DARKGRAY);
     if (x >= 0 && y >= 0 && x < MAXX && y < MAXY) {
         screenGotoxy(x, y);
         printf("  ☠  ");
