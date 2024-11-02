@@ -39,11 +39,11 @@ void initializaStars(){
 void printStars(){
     for (int i = 0; i < MAX_STARS; i++){
         if (stars[i].distance == 0){
-            screenSetColor(WHITE, DARKGRAY);
+            screenSetColor(BLACK, DARKGRAY);
             screenGotoxy(stars[i].XPos, stars[i].YPos);
             printf(".");
         }else {
-            screenSetColor(LIGHTGRAY, DARKGRAY);
+            screenSetColor(BLACK, DARKGRAY);
             screenGotoxy(stars[i].XPos, stars[i].YPos);
             printf(".");
         }

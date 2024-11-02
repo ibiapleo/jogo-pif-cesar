@@ -17,7 +17,7 @@ void printEnemy(int x, int y) {
     screenSetColor(RED, DARKGRAY);
     if (x >= 0 && y >= 0 && x < MAXX && y < MAXY) {
         screenGotoxy(x, y);
-        printf("  ☠  ");
+        printf(" ‣ ");
     }
 }
 
@@ -149,9 +149,9 @@ void moveMinion(int *minionX, int *minionY) {
         *minionY = rand() % (MAXY - 4) + 1;
     }
 
-    if ((randomNumber() % 2) == 1){
+    if ((rand() % 2) == 1 && *minionY < (MAXY - 2)){
         *minionY += 1;
-    }else {
+    }else if (*minionY > (MINY  + 1)){
         *minionY -= 1;
     }
 
