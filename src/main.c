@@ -44,6 +44,7 @@ int main() {
     screenInit(1);
     //Mix_PlayMusic(backgroundMusic, -1);
     
+
     while (1) {
         if (isPlaying == 0) {
             showMainMenu(selectedOption);

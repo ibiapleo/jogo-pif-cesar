@@ -6,11 +6,13 @@
 #include "timer.h"
 #include "keyboard.h"
 #include "timer.h"
+#include "background.h"
 
 void initializeGame(int *life, int enemyX[], int enemyY[], int enemyTimers[], int minionX[], int minionY[], int minionTimers[]) {
     *life = LIFE;
     initializeEnemies(enemyX, enemyY, enemyTimers);
     initializeMinions(minionX, minionY, minionTimers);
+    initializaStars();
     screenInit(1);
     keyboardInit();
     timerInit(70);
@@ -18,8 +20,11 @@ void initializeGame(int *life, int enemyX[], int enemyY[], int enemyTimers[], in
 
 void updateGame(int *YPos, int *XPos, int *life, int enemyX[], int enemyY[], int enemyTimers[], int minionX[], int minionY[], int minionTimers[]) {
     printWing(XPos, YPos);
+    printStars();
+    moveStars();
     printLife(SCRSTARTY, SCRSTARTX, *life);
     screenUpdate();
+
 
     if (timerTimeOver() == 1) {
         screenClear();
