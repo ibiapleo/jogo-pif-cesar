@@ -26,9 +26,10 @@ void clearBullet(int XBullet, int YBullet) {
     screenUpdate();
 }
 
-void shootBullets(int *XPos, int *YPos) {
+void shootBullets(int *XPos, int *YPos, Mix_Chunk *pewSound) {
     for (int i = 0; i < MAX_BULLETS; i++) {
         if (myBullets[i].status != 1)  {
+            Mix_PlayChannel(-1, pewSound, 0);
             myBullets[i].x = *XPos + 10;
             myBullets[i].y = *YPos + 2;
             myBullets[i].status = 1;
@@ -53,8 +54,8 @@ void moveBullets() {
     }
 }
 
-void moveWingBullet(int *XPos, int *YPos, int *command) {
+void moveWingBullet(int *XPos, int *YPos, int *command, Mix_Chunk *pewSound) {
      if (*command == 32) { // Espaço
-        shootBullets(XPos, YPos);
+        shootBullets(XPos, YPos, pewSound);
     }
  }

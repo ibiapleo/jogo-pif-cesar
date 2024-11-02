@@ -10,4 +10,8 @@ Mix_Music* initializeGameTrack();
 
 Mix_Music* initializeDeathSound();
 
+Mix_Chunk* pew();
+
+void initializeAudioSystem();
+
 #endif

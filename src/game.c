@@ -47,19 +47,22 @@ void displayGameOver(Mix_Music *gameTrack, Mix_Music *deathSound) {
     printf("  \\_____/_/    \\_\\_|  |_|______|  \\____/   \\/   |______|_|  \\_\\\n");
     screenGotoxy(SCRSTARTX + 25, SCRSTARTY + 18);
     printf(" Press any key to exit...\n");
-    Mix_FreeMusic(gameTrack);
-    Mix_CloseAudio();
-    Mix_PlayMusic(deathSound, 0);
-    Mix_CloseAudio();
     screenUpdate();
 }
 
 void handleGameOver(Mix_Music *gameTrack, Mix_Music *deathSound) {
+    Mix_HaltMusic();
+    Mix_PlayMusic(deathSound, 0);
     displayGameOver(gameTrack, deathSound);
     while (!keyhit()) { }
 }
 
-void cleanUp() {
+void cleanUp(Mix_Music **menuMusic, Mix_Music **gameTrack, Mix_Music **deathSound, Mix_Chunk **pewSound) {
+    Mix_FreeMusic(*menuMusic);
+    Mix_FreeMusic(*gameTrack);
+    Mix_FreeMusic(*deathSound);
+    Mix_FreeChunk(*pewSound);
+    Mix_CloseAudio();
     keyboardDestroy();
     screenDestroy();
     timerDestroy();
