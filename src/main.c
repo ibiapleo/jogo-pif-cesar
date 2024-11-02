@@ -13,9 +13,17 @@
 
 
 int main() {
+    initializeAudioSystem();
     Mix_Music *menuMusic = initializeMenuAudio();
     Mix_Music *gameTrack = initializeGameTrack();
     Mix_Music *deathSound = initializeDeathSound();
+    Mix_Chunk *pewSound = pew();
+
+    if(!menuMusic || !gameTrack || !deathSound || !pewSound) {
+        fprintf(stderr, "Erro ao carregar recursos de áudio.\n");
+        return 1;
+    }
+
     int ch = 0;
     int YPos = 20, XPos = 20;
     int life, isPlaying = 0, selectedOption = 0;
@@ -23,18 +31,19 @@ int main() {
 
     keyboardInit();
     screenInit(1);
+    Mix_HaltMusic();
     Mix_PlayMusic(menuMusic, -1);
     
     while (1) {
         if (isPlaying == 0) {
             showMainMenu(selectedOption);
             ch = readch();
-            handleMenuInput(ch, &selectedOption, &isPlaying, &life, enemyX, enemyY, enemyTimers, menuMusic, gameTrack);
+            handleMenuInput(ch, &selectedOption, &isPlaying, &life, enemyX, enemyY, enemyTimers, gameTrack);
         } else {
             if (keyhit()) {
                 ch = readch();
                 moveWing(&ch, &YPos, &XPos);
-                moveWingBullet(&XPos, &YPos, &ch);
+                moveWingBullet(&XPos, &YPos, &ch, pewSound);
             }
 
             updateGame(&YPos, &XPos, &life, enemyX, enemyY, enemyTimers);
@@ -46,7 +55,7 @@ int main() {
         }
     }
 
-    cleanUp();
+    cleanUp(&menuMusic, &gameTrack, &deathSound, &pewSound);
     SDL_Quit();
     return 0;
 }

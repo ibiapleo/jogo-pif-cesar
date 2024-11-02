@@ -9,6 +9,6 @@ void updateGame(int *YPos, int *XPos, int *life, int enemyX[], int enemyY[], int
 void handleGameOver(Mix_Music *gameTrack, Mix_Music *deathSound);
 void displayGameOver(Mix_Music *gameTrack, Mix_Music *deathSound);
 void handleGameOver();
-void cleanUp();
+void cleanUp(Mix_Music **menuMusic, Mix_Music **gameTrack, Mix_Music **deathSound, Mix_Chunk **pewSound);
 
 #endif
