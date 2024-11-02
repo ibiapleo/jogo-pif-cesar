@@ -6,13 +6,16 @@
 #include "timer.h"
 #include "keyboard.h"
 #include "timer.h"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 
-void initializeGame(int *life, int enemyX[], int enemyY[], int enemyTimers[]) {
+void initializeGame(int *life, int enemyX[], int enemyY[], int enemyTimers[], Mix_Music *gameTrack) {
+    Mix_PlayMusic(gameTrack, -1);
     *life = LIFE;
     initializeEnemies(enemyX, enemyY, enemyTimers);
     screenInit(1);
     keyboardInit();
-    timerInit(45);
+    timerInit(50);
 }
 
 void updateGame(int *YPos, int *XPos, int *life, int enemyX[], int enemyY[], int enemyTimers[]) {
@@ -29,7 +32,7 @@ void updateGame(int *YPos, int *XPos, int *life, int enemyX[], int enemyY[], int
     }
 }
 
-void displayGameOver() {
+void displayGameOver(Mix_Music *gameTrack, Mix_Music *deathSound) {
     screenGotoxy(SCRSTARTX + 6, SCRSTARTY + 8);
     printf("   _____          __  __ ______    ______      ________ _____  \n");
     screenGotoxy(SCRSTARTX + 6, SCRSTARTY + 9);
@@ -44,11 +47,15 @@ void displayGameOver() {
     printf("  \\_____/_/    \\_\\_|  |_|______|  \\____/   \\/   |______|_|  \\_\\\n");
     screenGotoxy(SCRSTARTX + 25, SCRSTARTY + 18);
     printf(" Press any key to exit...\n");
+    Mix_FreeMusic(gameTrack);
+    Mix_CloseAudio();
+    Mix_PlayMusic(deathSound, 0);
+    Mix_CloseAudio();
     screenUpdate();
 }
 
-void handleGameOver() {
-    displayGameOver();
+void handleGameOver(Mix_Music *gameTrack, Mix_Music *deathSound) {
+    displayGameOver(gameTrack, deathSound);
     while (!keyhit()) { }
 }
 
