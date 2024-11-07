@@ -54,6 +54,11 @@ void moveBullets() {
     }
 }
 
+int sendBulletsLocation(int i){
+    int j = ((myBullets[i].x * 1000) + myBullets[i].y);
+    return j;
+}
+
 void moveWingBullet(int *XPos, int *YPos, int *command, Mix_Chunk *pewSound) {
      if (*command == 32) { // Espaço
         shootBullets(XPos, YPos, pewSound);

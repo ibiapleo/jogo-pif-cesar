@@ -20,16 +20,16 @@ void showMainMenu(int selectedOption) {
 
     screenSetColor(WHITE, BLACK);
     screenGotoxy(SCRSTARTX + 22, SCRSTARTY + 8);
+
     screenPrintCenter("Use o WASD para mover e Enter para selecionar");
     screenUpdate();
 }
-
-void handleMenuInput(int ch, int* selectedOption, int* isPlaying, int* life, int enemyX[], int enemyY[], int enemyTimers[], Mix_Music *gameTrack) {
+void handleMenuInput(int ch, int* selectedOption, int* isPlaying, int* life, int enemyX[], int enemyY[], int enemyTimers[], Mix_Music *gameTrack, int minionX[], int minionY[], int minionTimers[]) {
     if (ch == 119) *selectedOption = (*selectedOption - 1 + 3) % 3;
     else if (ch == 115) *selectedOption = (*selectedOption + 1) % 3;
     else if (ch == 10) {
         if (*selectedOption == 0) {
-            initializeGame(life, enemyX, enemyY, enemyTimers, gameTrack);
+            initializeGame(life, enemyX, enemyY, enemyTimers, gameTrack, minionX, minionY, minionTimers);
             *isPlaying = 1;
         }
     }

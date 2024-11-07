@@ -26,7 +26,7 @@ void timerDestroy()
 
 int randomNumber(){
     int random;
-    random = now.tv_usec * 598;
+    random = now.tv_usec * 597;
     return random;
 }
 

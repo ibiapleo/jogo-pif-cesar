@@ -6,28 +6,44 @@
 #include "timer.h"
 #include "keyboard.h"
 #include "timer.h"
+#include "background.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
 
-void initializeGame(int *life, int enemyX[], int enemyY[], int enemyTimers[], Mix_Music *gameTrack) {
+
+
+
+
+
+
+void initializeGame(int *life, int enemyX[], int enemyY[], int enemyTimers[], Mix_Music *gameTrack, int minionX[], int minionY[], int minionTimers[]) {
     Mix_PlayMusic(gameTrack, -1);
     *life = LIFE;
     initializeEnemies(enemyX, enemyY, enemyTimers);
+    initializeMinions(minionX, minionY, minionTimers);
+    initializaStars();
     screenInit(1);
     keyboardInit();
     timerInit(50);
 }
 
-void updateGame(int *YPos, int *XPos, int *life, int enemyX[], int enemyY[], int enemyTimers[]) {
+void updateGame(int *YPos, int *XPos, int *life, int enemyX[], int enemyY[], int enemyTimers[], int minionX[], int minionY[], int minionTimers[]) {
     printWing(XPos, YPos);
+
+
     printLife(SCRSTARTY, SCRSTARTX, *life);
     screenUpdate();
+
 
     if (timerTimeOver() == 1) {
         screenClear();
         screenSetColor(CYAN, DARKGRAY);
         screenDrawBorders();
         updateEnemies(*XPos, *YPos, life, enemyX, enemyY, enemyTimers);
+        updateMinions(*XPos, *YPos, life, minionX, minionY, minionTimers);
+        moveStars();
+        printStars();
+
         moveBullets();
     }
 }
