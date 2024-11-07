@@ -1,6 +1,9 @@
 #include "bullet.h"
 #include "screen.h"
 #include <string.h>
+#include "musics.h"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 
 #define MAX_BULLETS 12
 typedef struct {
@@ -13,7 +16,7 @@ Bullet myBullets[MAX_BULLETS];
 
 void printBullet(int XBullet, int YBullet) {
     screenGotoxy(XBullet, YBullet);
-    printf(" ⁍ ");
+    printf(" ‣ ");
     screenUpdate();
 }  
 
@@ -23,9 +26,10 @@ void clearBullet(int XBullet, int YBullet) {
     screenUpdate();
 }
 
-void shootBullets(int *XPos, int *YPos) {
+void shootBullets(int *XPos, int *YPos, Mix_Chunk *pewSound) {
     for (int i = 0; i < MAX_BULLETS; i++) {
         if (myBullets[i].status != 1)  {
+            Mix_PlayChannel(-1, pewSound, 0);
             myBullets[i].x = *XPos + 10;
             myBullets[i].y = *YPos + 2;
             myBullets[i].status = 1;
@@ -49,12 +53,14 @@ void moveBullets() {
         }
     }
 }
+
 int sendBulletsLocation(int i){
     int j = ((myBullets[i].x * 1000) + myBullets[i].y);
     return j;
 }
-void moveWingBullet(int *XPos, int *YPos, int *command) {
+
+void moveWingBullet(int *XPos, int *YPos, int *command, Mix_Chunk *pewSound) {
      if (*command == 32) { // Espaço
-        shootBullets(XPos, YPos);
+        shootBullets(XPos, YPos, pewSound);
     }
  }

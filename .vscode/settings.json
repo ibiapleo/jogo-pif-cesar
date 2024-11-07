@@ -75,5 +75,7 @@
     "game.h": "c",
     "string.h": "c",
     "bullet.h": "c"
+    "sdl.h": "c"
+
   }
 }

@@ -7,32 +7,22 @@
 #include "keyboard.h"
 #include "timer.h"
 #include "enemy.h"
+#include "musics.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
 
-Mix_Music* initializeAudio() {
-    if (SDL_Init(SDL_INIT_AUDIO) < 0) {
-        fprintf(stderr, "Não foi possível inicializar o SDL: %s\n", SDL_GetError());
-        return NULL;
-    }
-
-    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
-        fprintf(stderr, "Erro ao inicializar SDL_mixer: %s\n", Mix_GetError());
-        return NULL;
-    }
-
-    Mix_Music *backgroundMusic = Mix_LoadMUS("musicas/audio.mp3");
-    if (!backgroundMusic) {
-        fprintf(stderr, "Erro ao carregar música: %s\n", Mix_GetError());
-        return NULL;
-    }
-
-    return backgroundMusic;
-}
 
 int main() {
-    Mix_Music *backgroundMusic = initializeAudio();
-    if (!backgroundMusic) return 1;
+    initializeAudioSystem();
+    Mix_Music *menuMusic = initializeMenuAudio();
+    Mix_Music *gameTrack = initializeGameTrack();
+    Mix_Music *deathSound = initializeDeathSound();
+    Mix_Chunk *pewSound = pew();
+
+    if(!menuMusic || !gameTrack || !deathSound || !pewSound) {
+        fprintf(stderr, "Erro ao carregar recursos de áudio.\n");
+        return 1;
+    }
 
     int ch = 0;
     int YPos = 20, XPos = 20;
@@ -42,33 +32,32 @@ int main() {
 
     keyboardInit();
     screenInit(1);
-    //Mix_PlayMusic(backgroundMusic, -1);
+    Mix_HaltMusic();
+    Mix_PlayMusic(menuMusic, -1);
     
 
     while (1) {
         if (isPlaying == 0) {
             showMainMenu(selectedOption);
             ch = readch();
-            handleMenuInput(ch, &selectedOption, &isPlaying, &life, enemyX, enemyY, enemyTimers, minionX, minionY, minionTimers);
+            handleMenuInput(ch, &selectedOption, &isPlaying, &life, enemyX, enemyY, enemyTimers, gameTrack, minionX, minionY, minionTimers));
         } else {
             if (keyhit()) {
                 ch = readch();
                 moveWing(&ch, &YPos, &XPos);
-                moveWingBullet(&XPos, &YPos, &ch);
+                moveWingBullet(&XPos, &YPos, &ch, pewSound);
             }
 
             updateGame(&YPos, &XPos, &life, enemyX, enemyY, enemyTimers, minionX, minionY, minionTimers);
 
             if (life <= 0) {
-                handleGameOver();
+                handleGameOver(gameTrack, deathSound);
                 isPlaying = 0;
             }
         }
     }
 
-    cleanUp();
-    //Mix_FreeMusic(backgroundMusic);
-    //Mix_CloseAudio();
-    //SDL_Quit();
+    cleanUp(&menuMusic, &gameTrack, &deathSound, &pewSound);
+    SDL_Quit();
     return 0;
 }
