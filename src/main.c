@@ -40,7 +40,7 @@ int main() {
         if (isPlaying == 0) {
             showMainMenu(selectedOption);
             ch = readch();
-            handleMenuInput(ch, &selectedOption, &isPlaying, &life, enemyX, enemyY, enemyTimers, gameTrack, minionX, minionY, minionTimers));
+            handleMenuInput(ch, &selectedOption, &isPlaying, &life, enemyX, enemyY, enemyTimers, gameTrack, minionX, minionY, minionTimers);
         } else {
             if (keyhit()) {
                 ch = readch();
