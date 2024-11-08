@@ -12,13 +12,11 @@ Score* createScore() {
 }
 
 void incrementScore(Score* score) {
-    screenSetColor(RED, DARKGRAY);
-    screenGotoxy(SCRSTARTY + 5, SCRSTARTY+ 6);
-    printf("Score atualizado: %d\n", score->points);
     if (score != NULL) {
-        score->points += 10;
+        score->points += 5;
     }
 }
+
 void resetScore(Score* score) {
     if (score) {
         score->points = 0;
@@ -36,7 +34,7 @@ void saveScoreToFile(const Score* score) {
     
     FILE *file = fopen("scores.txt", "a");
     if (file) {
-        fprintf(file, "Score: %d\n", score->points);
+        fprintf(file, "Gabriel Moraes | %d\n", score->points);
         fclose(file);
     } else {
         fprintf(stderr, "Erro ao abrir o arquivo de pontuação.\n");
@@ -45,6 +43,6 @@ void saveScoreToFile(const Score* score) {
 
 void printScore(int x, int y, Score* score) {
     screenSetColor(RED, DARKGRAY);
-    screenGotoxy(x + 1, y);
-    printf("  ♥   %d", score -> points);
+    screenGotoxy(x + 10, y);
+    printf("  🏆  %d", score -> points);
 }

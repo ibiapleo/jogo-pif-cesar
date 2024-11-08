@@ -28,7 +28,7 @@ void updateGame(int *YPos, int *XPos, int *life, int enemyX[], int enemyY[], int
     printWing(XPos, YPos);
 
     printLife(SCRSTARTY, SCRSTARTX, *life);
-    printScore(SCRSTARTY + 5, SCRSTARTY + 5, score);
+    printScore(SCRSTARTY, SCRSTARTX, score);
     
     screenUpdate();
 

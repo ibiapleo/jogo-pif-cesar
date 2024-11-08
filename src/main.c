@@ -41,6 +41,7 @@ int main() {
             showMainMenu(selectedOption);
             ch = readch();
             handleMenuInput(ch, &selectedOption, &isPlaying, &life, enemyX, enemyY, enemyTimers, gameTrack, minionX, minionY, minionTimers);
+            resetScore(score);
         } else {
             if (keyhit()) {
                 ch = readch();

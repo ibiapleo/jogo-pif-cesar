@@ -135,7 +135,6 @@ void updateMinions(int XPos, int YPos, int *life, int MinionX[], int MinionY[], 
             moveMinion(&MinionX[i], &MinionY[i]);
             if (checkCollision(XPos, YPos, MinionX[i], MinionY[i])) {
                 clearMinion(MinionX[i], MinionY[i]);
-                incrementScore(score);
                 (*life)--;
                 MinionX[i] = MAXX;
                 MinionY[i] = rand() % (MAXY - 4) + 1;
@@ -156,6 +155,7 @@ void updateMinions(int XPos, int YPos, int *life, int MinionX[], int MinionY[], 
                     for (int j = 0; j < NUM_MINIONS; j++){
                         int bulletX = sendBulletsLocation(i)/1000, bulletY = sendBulletsLocation(i) % 1000;
                         if (checkCollision(MinionX[j], MinionY[j], bulletX, bulletY )&& bulletX < MAXX) {
+                            incrementScore(score);
                             MinionX[j] = MAXX;
                             MinionY[j] = rand() % (MAXY - 4) + 1;
                             MinionTimers[j] = rand() % 50 + 20;
