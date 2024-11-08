@@ -6,9 +6,7 @@
 #include "collision.h"
 #include <sys/time.h>
 #include "bullet.h"
-
-
-
+#include "score.h"
 
 
 static struct timeval timer, now;
@@ -20,8 +18,6 @@ void printEnemy(int x, int y) {
         printf(" ‣ ");
     }
 }
-
-
 
 void moveEnemy(int *enemyX, int *enemyY) {
 
@@ -41,8 +37,6 @@ void moveEnemy(int *enemyX, int *enemyY) {
     }
 }
 
-
-
 void initializeEnemies(int enemyX[], int enemyY[], int enemyTimers[]) {
     for (int i = 0; i < NUM_ENEMIES; i++)
     {
@@ -52,7 +46,7 @@ void initializeEnemies(int enemyX[], int enemyY[], int enemyTimers[]) {
     }
 }
 
-void updateEnemies(int XPos, int YPos, int *life, int enemyX[], int enemyY[], int enemyTimers[]) {
+void updateEnemies(int XPos, int YPos, int *life, int enemyX[], int enemyY[], int enemyTimers[], Score* score) {
     for (int i = 0; i < NUM_ENEMIES; i++) {
         if (enemyTimers[i] > 0) {
             enemyTimers[i]--;
@@ -83,43 +77,6 @@ void clearEnemy(int enemyX, int enemyY) {
     printf("   ");
     screenUpdate();
 }
-// 
-// void moveMinion(int *XPos, int *YPos) {
-//     int newPos = (randomNumber() % 8);
-// 
-//     int timediff =;
-// 
-//     if (timediff > 75){
-// 
-//         screenGotoxy(*XPos + 1, *YPos);
-//         printf("          \n");
-//         screenGotoxy(*XPos, *YPos + 1);
-//         printf("          \n");
-// 
-//         if (newPos == 0 && *YPos > MINY) {
-//             *YPos -= 1;
-//         } else if (newPos == 1 && *YPos > MINY && *XPos < MAXX) {
-//             *XPos += 1;
-//             *YPos -= 1;
-//         } else if (newPos == 2 && *XPos < MAXX)  {
-//             *XPos += 1;
-//         } else if (newPos == 3 && *YPos < MAXY && *XPos < MAXX) {
-//             *XPos += 1;
-//             *YPos += 1;
-//         } else if (newPos == 4 && *YPos < MAXY)  {
-//             *YPos += 1;
-//         } else if (newPos == 5 && *YPos < MAXY && *XPos > MINX) {
-//             *XPos -= 1;
-//             *YPos += 1;
-//         } else if (newPos == 6 && *XPos > MINX) {
-//             *XPos -= 1;
-//         } else if (newPos == 7 && *YPos > MINY && *XPos > MINX) {
-//             *XPos -= 1;
-//             *YPos -= 1;
-//         }
-//         timediff = getTimeDiff();
-//     }
-// }
 
 void printMinion(int x, int y) {
 
@@ -170,7 +127,7 @@ void initializeMinions(int MinionX[], int MinionY[], int MinionTimers[]) {
 
 
 
-void updateMinions(int XPos, int YPos, int *life, int MinionX[], int MinionY[], int MinionTimers[]) {
+void updateMinions(int XPos, int YPos, int *life, int MinionX[], int MinionY[], int MinionTimers[], Score* score) {
     for (int i = 0; i < NUM_MINIONS; i++) {
         if (MinionTimers[i] > 0) {
             MinionTimers[i]--;
@@ -178,6 +135,7 @@ void updateMinions(int XPos, int YPos, int *life, int MinionX[], int MinionY[], 
             moveMinion(&MinionX[i], &MinionY[i]);
             if (checkCollision(XPos, YPos, MinionX[i], MinionY[i])) {
                 clearMinion(MinionX[i], MinionY[i]);
+                incrementScore(score);
                 (*life)--;
                 MinionX[i] = MAXX;
                 MinionY[i] = rand() % (MAXY - 4) + 1;

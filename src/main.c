@@ -8,9 +8,9 @@
 #include "timer.h"
 #include "enemy.h"
 #include "musics.h"
+#include "score.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
-
 
 int main() {
     initializeAudioSystem();
@@ -19,7 +19,7 @@ int main() {
     Mix_Music *deathSound = initializeDeathSound();
     Mix_Chunk *pewSound = pew();
 
-    if(!menuMusic || !gameTrack || !deathSound || !pewSound) {
+    if (!menuMusic || !gameTrack || !deathSound || !pewSound) {
         fprintf(stderr, "Erro ao carregar recursos de áudio.\n");
         return 1;
     }
@@ -29,12 +29,12 @@ int main() {
     int life, isPlaying = 0, selectedOption = 0;
     int enemyX[NUM_ENEMIES], enemyY[NUM_ENEMIES], enemyTimers[NUM_ENEMIES];
     int minionX[NUM_MINIONS], minionY[NUM_MINIONS], minionTimers[NUM_MINIONS];
+    Score* score = createScore();
 
     keyboardInit();
     screenInit(1);
     Mix_HaltMusic();
     Mix_PlayMusic(menuMusic, -1);
-    
 
     while (1) {
         if (isPlaying == 0) {
@@ -48,15 +48,17 @@ int main() {
                 moveWingBullet(&XPos, &YPos, &ch, pewSound);
             }
 
-            updateGame(&YPos, &XPos, &life, enemyX, enemyY, enemyTimers, minionX, minionY, minionTimers);
+            updateGame(&YPos, &XPos, &life, enemyX, enemyY, enemyTimers, minionX, minionY, minionTimers, score);
 
             if (life <= 0) {
+                saveScoreToFile(score);
                 handleGameOver(gameTrack, deathSound);
                 isPlaying = 0;
             }
         }
     }
 
+    freeScore(score);
     cleanUp(&menuMusic, &gameTrack, &deathSound, &pewSound);
     SDL_Quit();
     return 0;

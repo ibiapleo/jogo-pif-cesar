@@ -12,7 +12,7 @@ void initializeAudioSystem() {
 
 Mix_Music* initializeMenuAudio() {
 
-    Mix_Music *menuMusic = Mix_LoadMUS("../musicas/Menu_Track.mp3");
+    Mix_Music *menuMusic = Mix_LoadMUS("./musicas/Menu_Track.mp3");
     if (!menuMusic) {
         fprintf(stderr, "Erro ao carregar música: %s\n", Mix_GetError());
         return NULL;
@@ -23,7 +23,7 @@ Mix_Music* initializeMenuAudio() {
 
 Mix_Music* initializeGameTrack() {
 
-    Mix_Music *gameTrack = Mix_LoadMUS("../musicas/Game_Track.mp3");
+    Mix_Music *gameTrack = Mix_LoadMUS("./musicas/Game_Track.mp3");
     if (!gameTrack) {
         fprintf(stderr, "Erro ao carregar música: %s\n", Mix_GetError());
         return NULL;
@@ -34,7 +34,7 @@ Mix_Music* initializeGameTrack() {
 
 Mix_Music* initializeDeathSound() {
 
-    Mix_Music *deathSound = Mix_LoadMUS("../musicas/Death_Sound.mp3");
+    Mix_Music *deathSound = Mix_LoadMUS("./musicas/Death_Sound.mp3");
     if (!deathSound) {
         fprintf(stderr, "Erro ao carregar música: %s\n", Mix_GetError());
         return NULL;
@@ -45,7 +45,7 @@ Mix_Music* initializeDeathSound() {
 
 Mix_Chunk* pew() {
 
-    Mix_Chunk *pewSound = Mix_LoadWAV("../musicas/Pew.wav");
+    Mix_Chunk *pewSound = Mix_LoadWAV("./musicas/Pew.wav");
     if (!pewSound) {
         fprintf(stderr, "Erro ao carregar áudio: %s\n", Mix_GetError());
         return NULL;
