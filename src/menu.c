@@ -2,6 +2,7 @@
 #include "screen.h"
 #include "keyboard.h"
 #include "game.h"
+#include "ranking.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
 #include <string.h>
@@ -12,7 +13,7 @@ void showMainMenu(int selectedOption) {
     screenGotoxy(SCRSTARTX + 29, SCRSTARTY + 10);
     screenPrintCenter("=== MENU PRINCIPAL ===");
 
-    const char* options[] = {"1. Iniciar Jogo", "2. Selecionar Modo", "3. Ver Rankings"};
+    const char* options[] = {"1. Iniciar Jogo", "2. Modo do Jogo - A REALIZAR", "3. Ver Rankings"};
     for (int i = 0; i < 3; i++) {
         screenSetColor(selectedOption == i ? CYAN : WHITE, BLACK);
         screenGotoxy(SCRSTARTX + 31, SCRSTARTY + 11 + i);
@@ -32,10 +33,11 @@ void handleMenuInput(int ch, int* selectedOption, int* isPlaying, int* life, int
     else if (ch == 115) *selectedOption = (*selectedOption + 1) % 3;
     else if (ch == 10) {
         if (*selectedOption == 0) {
-
             nameInput(name);
             initializeGame(life, enemyX, enemyY, enemyTimers, gameTrack, minionX, minionY, minionTimers);
             *isPlaying = 1;
+        } else if (*selectedOption == 2) {
+            showRanking();
         }
     }
 }
