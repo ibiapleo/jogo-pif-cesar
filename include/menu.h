@@ -5,5 +5,6 @@
 #include <SDL2/SDL_mixer.h>
 
 void showMainMenu();
+void nameInput();
 void handleMenuInput();
 #endif

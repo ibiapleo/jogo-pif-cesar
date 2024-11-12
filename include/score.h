@@ -6,10 +6,10 @@ typedef struct {
 } Score;
 
 Score* createScore();
-void incrementScore(Score* score);
-void resetScore(Score* score);
-void freeScore(Score* score);
-void saveScoreToFile(const Score* score);
+void incrementScore();
+void resetScore();
+void freeScore();
+void saveScoreToFile();
 void printScore();
 
 #endif

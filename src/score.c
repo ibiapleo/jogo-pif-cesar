@@ -29,12 +29,12 @@ void freeScore(Score* score) {
     }
 }
 
-void saveScoreToFile(const Score* score) {
+void saveScoreToFile(const Score* score, char* name) {
     if (!score) return;
     
     FILE *file = fopen("scores.txt", "a");
     if (file) {
-        fprintf(file, "Gabriel Moraes | %d\n", score->points);
+        fprintf(file, "%s | %d\n", name, score->points);
         fclose(file);
     } else {
         fprintf(stderr, "Erro ao abrir o arquivo de pontuação.\n");
