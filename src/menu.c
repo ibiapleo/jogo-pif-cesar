@@ -67,6 +67,9 @@ void nameInput(char* name){
 
     screenGotoxy((MAXX/2), (MAXY/2)); 
 
+    for (int i =0; i<20; i++){
+        name[i] = 32; 
+    }
     while (ch != 10){ 
         if (keyhit()){
             ch = readch();
@@ -86,5 +89,4 @@ void nameInput(char* name){
             }
         }
     }
-    
 }

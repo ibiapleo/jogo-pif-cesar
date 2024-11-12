@@ -30,7 +30,9 @@ int main() {
     int enemyX[NUM_ENEMIES], enemyY[NUM_ENEMIES], enemyTimers[NUM_ENEMIES];
     int minionX[NUM_MINIONS], minionY[NUM_MINIONS], minionTimers[NUM_MINIONS];
     Score* score = createScore();
-    char name[20] = {0};
+    char name[21] = {0};
+
+
     
     keyboardInit();
     screenInit(1);

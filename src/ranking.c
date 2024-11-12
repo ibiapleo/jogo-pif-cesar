@@ -14,7 +14,7 @@ void loadScores(PlayerScore scores[], int *count) {
     }
 
     *count = 0;
-    while (fscanf(file, "%19[^|] | %d\n", scores[*count].name, &scores[*count].score) == 2) {
+    while (fscanf(file, "%20[^|] | %d\n", scores[*count].name, &scores[*count].score) == 2) {
         (*count)++;
         if (*count >= MAX_PLAYERS) break;
     }
