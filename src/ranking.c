@@ -57,13 +57,13 @@ void showRanking() {
             char rankingEntry[60];
 
             if (i == 0) {
-                snprintf(rankingEntry, sizeof(rankingEntry), "%d. 🥇 %s - %d pontos", i + 1, scores[i].name, scores[i].score);
+                snprintf(rankingEntry, sizeof(rankingEntry), "%d. 🥇 %s- %d pontos", i + 1, scores[i].name, scores[i].score);
             } else if (i == 1) {
-                snprintf(rankingEntry, sizeof(rankingEntry), "%d. 🥈 %s - %d pontos", i + 1, scores[i].name, scores[i].score);
+                snprintf(rankingEntry, sizeof(rankingEntry), "%d. 🥈 %s- %d pontos", i + 1, scores[i].name, scores[i].score);
             } else if (i == 2) {
-                snprintf(rankingEntry, sizeof(rankingEntry), "%d. 🥉 %s - %d pontos", i + 1, scores[i].name, scores[i].score);
+                snprintf(rankingEntry, sizeof(rankingEntry), "%d. 🥉 %s- %d pontos", i + 1, scores[i].name, scores[i].score);
             } else {
-                snprintf(rankingEntry, sizeof(rankingEntry), "%d. %s - %d pontos", i + 1, scores[i].name, scores[i].score);
+                snprintf(rankingEntry, sizeof(rankingEntry), "%d. %s- %d pontos", i + 1, scores[i].name, scores[i].score);
             }
 
             screenPrintCenter(rankingEntry);
