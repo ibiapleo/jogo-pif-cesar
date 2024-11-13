@@ -42,48 +42,47 @@ void handleMenuInput(int ch, int* selectedOption, int* isPlaying, int* life, int
     }
 }
 
+void printName(char name[]) {
+    screenGotoxy(SCRSTARTX + 29, SCRSTARTY + 7);
+    printf("Insira seu nome");
 
+    screenGotoxy(SCRSTARTX + 22, SCRSTARTY + 8);
+    printf("------------------------------");
 
-void printName(char namr[]) {
-    screenGotoxy((MAXX / 2), (MAXY / 2));
-    // Usar %s para imprimir a string, até o terminador nulo
-    printf("%s", namr);
-    
+    screenGotoxy(SCRSTARTX + 22, SCRSTARTY + 9);
+    printf("|                            |"); 
+
+    screenGotoxy(SCRSTARTX + 22, SCRSTARTY + 10);
+    printf("------------------------------");
+
+    screenGotoxy(SCRSTARTX + 22, SCRSTARTY + 12);
+    printf("Pressione Enter para continuar");
+
+    screenGotoxy(SCRSTARTX + 24, SCRSTARTY + 9);
+    printf("%s", name);
 }
 
-
-
 void nameInput(char* name){
-    int ch = 0; // Inicializa ch
-    int contador = 0; // Deve ser int, não char
-
-    // Limpa a tela
-    for (int i = 0; i < MAXX; i++){
-        for (int j = 0; j < MAXY; j++){
-            screenGotoxy(i, j);
-            printf("  ");
-        }
-    }  
+    int ch = 0;
+    int contador = 0;
+    
+    screenDrawBorders();
 
     screenGotoxy((MAXX/2), (MAXY/2)); 
 
-    for (int i =0; i<20; i++){
-        name[i] = 32; 
-    }
+    printName(name);
+    screenUpdate();
     while (ch != 10){ 
         if (keyhit()){
             ch = readch();
             if (ch == 127 && contador > 0){ 
                 contador--;
-                name[contador] = '\0'; 
+                name[contador] = '\0';
                 printName(name);
-                printf("                          ");
                 screenUpdate();
-                
             }else if(contador < 20){ 
                 name[contador] = ch;
                 contador++;
-                printf("                         ");
                 printName(name);
                 screenUpdate();
             }
