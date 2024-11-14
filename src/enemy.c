@@ -69,32 +69,35 @@ void updateEnemies(int XPos, int YPos, int *life, int enemyX[], int enemyY[], in
             }
         }
     }
-    screenUpdate();
 }
 
 void clearEnemy(int enemyX, int enemyY) {
     screenGotoxy(enemyY, enemyX);
     printf("   ");
-    screenUpdate();
 }
 
 void printMinion(int x, int y) {
-
-
     screenSetColor(GREEN, DARKGRAY);
 
     screenGotoxy(x + 1, y);
     printf("_/@\\_\n");
     screenGotoxy(x, y + 1);
     printf("|\\WVW/|\n");
-    
-    screenUpdate();
-
 }
 
+void initializeMinions(int MinionX[], int MinionY[], int MinionTimers[]) {
+    for (int i = 0; i < NUM_MINIONS; i++)
+    {
+        MinionX[i] = MAXX;
+        MinionY[i] = (rand() % (MAXY - 4)) + 2;
+        if (MinionY[i] > MAXY - 3) {
+            MinionY[i] = MAXY - 3;
+        }
+        MinionTimers[i] = rand() % 50 + 20;
+    }
+}
 
 void moveMinion(int *minionX, int *minionY) {
-
     if (*minionX >= 0) {
         printMinion(*minionX, *minionY);
     }
@@ -104,28 +107,17 @@ void moveMinion(int *minionX, int *minionY) {
         clearMinion(*minionX + 3, *minionY);
         *minionX = MAXX; 
         *minionY = rand() % (MAXY - 4) + 1;
+        if (*minionY > MAXY - 3) {
+            *minionY = MAXY - 3;
+        }
     }
 
-    if ((rand() % 2) == 1 && *minionY < (MAXY - 2)){
+    if ((rand() % 2) == 1 && *minionY < (MAXY - 3)){
         *minionY += 1;
-    }else if (*minionY > (MINY  + 1)){
+    } else if (*minionY > (MINY  + 1)) {
         *minionY -= 1;
     }
-
 }
-
-
-void initializeMinions(int MinionX[], int MinionY[], int MinionTimers[]) {
-    for (int i = 0; i < NUM_MINIONS; i++)
-    {
-        MinionX[i] = MAXX;
-        MinionY[i] = (rand() % (MAXY - 4)) + 2;
-        MinionTimers[i] = rand() % 50 + 20;
-    }
-
-}
-
-
 
 void updateMinions(int XPos, int YPos, int *life, int MinionX[], int MinionY[], int MinionTimers[], Score* score) {
     for (int i = 0; i < NUM_MINIONS; i++) {
@@ -149,8 +141,8 @@ void updateMinions(int XPos, int YPos, int *life, int MinionX[], int MinionY[], 
                 MinionTimers[i] = rand() % 50 + 20;
             }
         }  
-        for (int i = 0; i < MAX_BULLETS; i++) {
 
+        for (int i = 0; i < MAX_BULLETS; i++) {
                 for (int i = 0; i < MAX_BULLETS; i++) {
                     for (int j = 0; j < NUM_MINIONS; j++){
                         int bulletX = sendBulletsLocation(i)/1000, bulletY = sendBulletsLocation(i) % 1000;
@@ -165,7 +157,6 @@ void updateMinions(int XPos, int YPos, int *life, int MinionX[], int MinionY[], 
         }
 
     }
-    screenUpdate();
 }
 
 void clearMinion(int minionX, int minionY) {
@@ -173,7 +164,6 @@ void clearMinion(int minionX, int minionY) {
     printf("             ");
     screenGotoxy(minionY + 1, minionX);
     printf("              ");
-    screenUpdate();
 }
 
 

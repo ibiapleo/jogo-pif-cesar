@@ -9,19 +9,21 @@
 
 void showMainMenu(int selectedOption) {
     screenClear();
+
+    screenDrawBorders();
     screenSetColor(WHITE, BLACK);
-    screenGotoxy(SCRSTARTX + 29, SCRSTARTY + 10);
+    screenGotoxy(SCRSTARTX + 34, SCRSTARTY + 15);
     screenPrintCenter("=== MENU PRINCIPAL ===");
 
     const char* options[] = {"1. Iniciar Jogo", "2. Modo do Jogo - A REALIZAR", "3. Ver Rankings"};
     for (int i = 0; i < 3; i++) {
         screenSetColor(selectedOption == i ? CYAN : WHITE, BLACK);
-        screenGotoxy(SCRSTARTX + 31, SCRSTARTY + 11 + i);
+        screenGotoxy(SCRSTARTX + 36, SCRSTARTY + 16 + i);
         screenPrintCenter(options[i]);
     }
 
     screenSetColor(WHITE, BLACK);
-    screenGotoxy(SCRSTARTX + 22, SCRSTARTY + 8);
+    screenGotoxy(SCRSTARTX + 24, SCRSTARTY + 13);
 
     screenPrintCenter("Use o WASD para mover e Enter para selecionar");
     screenUpdate();
@@ -43,22 +45,22 @@ void handleMenuInput(int ch, int* selectedOption, int* isPlaying, int* life, int
 }
 
 void printName(char name[]) {
-    screenGotoxy(SCRSTARTX + 29, SCRSTARTY + 7);
+    screenGotoxy(SCRSTARTX + 40, SCRSTARTY + 13);
     printf("Insira seu nome");
 
-    screenGotoxy(SCRSTARTX + 22, SCRSTARTY + 8);
+    screenGotoxy(SCRSTARTX + 33, SCRSTARTY + 14);
     printf("------------------------------");
 
-    screenGotoxy(SCRSTARTX + 22, SCRSTARTY + 9);
+    screenGotoxy(SCRSTARTX + 33, SCRSTARTY + 15);
     printf("|                            |"); 
 
-    screenGotoxy(SCRSTARTX + 22, SCRSTARTY + 10);
+    screenGotoxy(SCRSTARTX + 33, SCRSTARTY + 16);
     printf("------------------------------");
 
-    screenGotoxy(SCRSTARTX + 22, SCRSTARTY + 12);
+    screenGotoxy(SCRSTARTX + 33, SCRSTARTY + 18);
     printf("Pressione Enter para continuar");
 
-    screenGotoxy(SCRSTARTX + 24, SCRSTARTY + 9);
+    screenGotoxy(SCRSTARTX + 35, SCRSTARTY + 15);
     printf("%s", name);
 }
 

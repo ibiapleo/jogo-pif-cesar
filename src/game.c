@@ -45,28 +45,32 @@ void updateGame(int *YPos, int *XPos, int *life, int enemyX[], int enemyY[], int
     }
 }
 
-void displayGameOver(Mix_Music *gameTrack, Mix_Music *deathSound) {
-    screenGotoxy(SCRSTARTX + 6, SCRSTARTY + 8);
+void displayGameOver(Mix_Music *gameTrack, Mix_Music *deathSound, Score* score) {
+    screenGotoxy(SCRSTARTX + 15, SCRSTARTY + 11);
     printf("   _____          __  __ ______    ______      ________ _____  \n");
-    screenGotoxy(SCRSTARTX + 6, SCRSTARTY + 9);
+    screenGotoxy(SCRSTARTX + 15, SCRSTARTY + 12);
     printf("  / ____|   /\\   |  \\/  |  ____|  / __ \\ \\    / /  ____|  __ \\ \n");
-    screenGotoxy(SCRSTARTX + 6, SCRSTARTY + 10);
+    screenGotoxy(SCRSTARTX + 15, SCRSTARTY + 13);
     printf(" | |  __   /  \\  | \\  / | |__    | |  | \\ \\  / /| |__  | |__) |\n");
-    screenGotoxy(SCRSTARTX + 6, SCRSTARTY + 11);
+    screenGotoxy(SCRSTARTX + 15, SCRSTARTY + 14);
     printf(" | | |_ | / /\\ \\ | |\\/| |  __|   | |  | |\\ \\/ / |  __| |  _  / \n");
-    screenGotoxy(SCRSTARTX + 6, SCRSTARTY + 12);
+    screenGotoxy(SCRSTARTX + 15, SCRSTARTY + 15);
     printf(" | |__| |/ ____ \\| |  | | |____  | |__| | \\  /  | |____| | \\ \\ \n");
-    screenGotoxy(SCRSTARTX + 6, SCRSTARTY + 13);
+    screenGotoxy(SCRSTARTX + 15, SCRSTARTY + 16);
     printf("  \\_____/_/    \\_\\_|  |_|______|  \\____/   \\/   |______|_|  \\_\\\n");
-    screenGotoxy(SCRSTARTX + 25, SCRSTARTY + 18);
+    screenGotoxy(SCRSTARTX + 35, SCRSTARTY + 21);
     printf(" Press any key to exit...\n");
+
+    screenGotoxy(SCRSTARTX + 38, SCRSTARTY + 26);
+    screenSetColor(YELLOW, BLACK);
+    printf("Sua pontuação foi: %d", score->points);
     screenUpdate();
 }
 
-void handleGameOver(Mix_Music *gameTrack, Mix_Music *deathSound) {
+void handleGameOver(Mix_Music *gameTrack, Mix_Music *deathSound, Score* score) {
     Mix_HaltMusic();
     Mix_PlayMusic(deathSound, 0);
-    displayGameOver(gameTrack, deathSound);
+    displayGameOver(gameTrack, deathSound, score);
     while (!keyhit()) { }
 }
 

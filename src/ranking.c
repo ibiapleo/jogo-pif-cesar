@@ -42,18 +42,20 @@ void showRanking() {
     screenClear();
     screenSetColor(WHITE, BLACK);
 
+    screenDrawBorders();
+
     screenGotoxy(SCRSTARTX + 35, SCRSTARTY + 5);
     screenPrintCenter("=== RANKING 🏆 ===");
 
     if (count == 0) {
-        screenGotoxy(SCRSTARTX + 29, SCRSTARTY + 7);
+        screenGotoxy(SCRSTARTX + 29, SCRSTARTY + 12);
         screenPrintCenter("Nenhuma pontuação disponível.");
     } else {
         sortScores(scores, count);
         top = count < TOP_LIMIT ? count : TOP_LIMIT;
 
         for (int i = 0; i < top; i++) {
-            screenGotoxy(SCRSTARTX + 29, SCRSTARTY + 7 + i);
+            screenGotoxy(SCRSTARTX + 29, SCRSTARTY + 12 + i);
             char rankingEntry[60];
 
             if (i == 0) {
@@ -70,7 +72,7 @@ void showRanking() {
         }
     }
 
-    screenGotoxy(SCRSTARTX + 20, SCRSTARTY + 9 + (top > 0 ? top : 1));
+    screenGotoxy(SCRSTARTX + 20, SCRSTARTY + 14 + (top > 0 ? top : 1));
     screenPrintCenter("Pressione qualquer tecla para voltar ao menu principal.");
     screenUpdate();
 

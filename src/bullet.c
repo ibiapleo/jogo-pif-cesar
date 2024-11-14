@@ -17,13 +17,11 @@ Bullet myBullets[MAX_BULLETS];
 void printBullet(int XBullet, int YBullet) {
     screenGotoxy(XBullet, YBullet);
     printf(" ‣ ");
-    screenUpdate();
 }  
 
 void clearBullet(int XBullet, int YBullet) {
     screenGotoxy(XBullet, YBullet);
     printf("   ");
-    screenUpdate();
 }
 
 void shootBullets(int *XPos, int *YPos, Mix_Chunk *pewSound) {

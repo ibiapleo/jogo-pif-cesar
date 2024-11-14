@@ -56,7 +56,7 @@ int main() {
 
             if (life <= 0) {
                 saveScoreToFile(score, &name);
-                handleGameOver(gameTrack, deathSound);
+                handleGameOver(gameTrack, deathSound, score);
                 isPlaying = 0;
             }
         }
