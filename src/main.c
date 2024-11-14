@@ -1,84 +1,69 @@
-#include <string.h>
-#include "collision.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include "menu.h"
+#include "wing.h"
+#include "game.h"
 #include "screen.h"
 #include "keyboard.h"
 #include "timer.h"
-#include "helicopter.h"
-#include "life.h"
 #include "enemy.h"
-#include "gameover.h"
-#include <stdlib.h>
-#include <stdio.h>
-
-void initializeGame(int *life, int enemyX[], int enemyY[], int enemyTimers[]) {
-    *life = LIFE;
-    initializeEnemies(enemyX, enemyY, enemyTimers);
-    screenInit(1);
-    keyboardInit();
-    timerInit(70);
-}
-
-void updateAndPrintEnemies(int XPos, int YPos, int *life, int enemyX[], int enemyY[], int enemyTimers[]) {
-    for (int i = 0; i < NUM_ENEMIES; i++) {
-        if (enemyTimers[i] > 0) {
-            enemyTimers[i]--;
-        } else {
-            moveEnemy(&enemyX[i], &enemyY[i]);
-            if (checkCollision(XPos, YPos, enemyX[i], enemyY[i])) {
-                clearEnemy(enemyX[i], enemyY[i]);
-                (*life)--;
-                enemyX[i] = MAXX;
-                enemyY[i] = rand() % (MAXY - 4) + 1;
-                enemyTimers[i] = rand() % 50 + 20;
-            } else {
-                printEnemy(enemyX[i], enemyY[i]);
-            }
-
-            if (enemyX[i] < 0) {
-                enemyX[i] = MAXX;
-                enemyY[i] = rand() % (MAXY - 4) + 1;
-                enemyTimers[i] = rand() % 50 + 20;
-            }
-        }
-    }
-    screenUpdate();
-}
+#include "musics.h"
+#include "score.h"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 
 int main() {
-    static int ch = 0;
+    initializeAudioSystem();
+    Mix_Music *menuMusic = initializeMenuAudio();
+    Mix_Music *gameTrack = initializeGameTrack();
+    Mix_Music *deathSound = initializeDeathSound();
+    Mix_Chunk *pewSound = pew();
+
+    if (!menuMusic || !gameTrack || !deathSound || !pewSound) {
+        fprintf(stderr, "Erro ao carregar recursos de áudio.\n");
+        return 1;
+    }
+
+    int ch = 0;
     int YPos = 20, XPos = 20;
-    int life;
+    int life, isPlaying = 0, selectedOption = 0;
+    int enemyX[NUM_ENEMIES], enemyY[NUM_ENEMIES], enemyTimers[NUM_ENEMIES];
+    int minionX[NUM_MINIONS], minionY[NUM_MINIONS], minionTimers[NUM_MINIONS];
+    Score* score = createScore();
+    char name[21] = {0};
 
-    int enemyX[NUM_ENEMIES], enemyY[NUM_ENEMIES];
-    int enemyTimers[NUM_ENEMIES];
+
     
-    initializeGame(&life, enemyX, enemyY, enemyTimers);
-
-    while (ch != 10) {
-        if (keyhit()) {
+    keyboardInit();
+    screenInit(1);
+    Mix_HaltMusic();
+    Mix_PlayMusic(menuMusic, -1);
+    
+    while (1) {
+        if (isPlaying == 0) {
+            showMainMenu(selectedOption);
             ch = readch();
-            moveHelicopter(&ch, &YPos, &XPos);
-        }
+            handleMenuInput(ch, &selectedOption, &isPlaying, &life, enemyX, enemyY, enemyTimers, gameTrack, minionX, minionY, minionTimers, &name);
+            resetScore(score);
+        } else {
+            if (keyhit()) {
+                ch = readch();
+                moveWing(&ch, &YPos, &XPos);
+                moveWingBullet(&XPos, &YPos, &ch, pewSound);
+            }
 
-        printHelicopter(&XPos, &YPos);
-        printLife(SCRSTARTY, SCRSTARTX, life);
-        screenUpdate();
+            updateGame(&YPos, &XPos, &life, enemyX, enemyY, enemyTimers, minionX, minionY, minionTimers, score);
 
-        if (timerTimeOver() == 1) {
-            screenClear();
-            screenSetColor(CYAN, DARKGRAY);
-            screenDrawBorders();
-            updateAndPrintEnemies(XPos, YPos, &life, enemyX, enemyY, enemyTimers); 
-        }
-
-        if (life <= 0) {
-            handleGameOver();
-            break;
+            if (life <= 0) {
+                saveScoreToFile(score, &name);
+                handleGameOver(gameTrack, deathSound, score);
+                isPlaying = 0;
+            }
         }
     }
 
-    keyboardDestroy();
-    screenDestroy();
-    timerDestroy();
+    freeScore(score);
+    cleanUp(&menuMusic, &gameTrack, &deathSound, &pewSound);
+    SDL_Quit();
     return 0;
 }

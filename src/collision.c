@@ -2,7 +2,7 @@
 
 int checkCollision(int heliX, int heliY, int enemyX, int enemyY)
 {
-    int heliWidth = 15;
+    int heliWidth = 10;
     int heliHeight = 4;
 
     return (enemyX >= heliX && enemyX < heliX + heliWidth &&
