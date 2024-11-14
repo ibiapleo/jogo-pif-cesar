@@ -1,6 +1,6 @@
 #ifndef __ENEMY_H__
 #define __ENEMY_H__
-#define NUM_ENEMIES 3
+#define NUM_ENEMIES 6
 #define NUM_MINIONS 5
 
 void printEnemy();
