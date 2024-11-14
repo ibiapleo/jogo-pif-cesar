@@ -32,8 +32,6 @@ int main() {
     Score* score = createScore();
     char name[21] = {0};
 
-
-    
     keyboardInit();
     screenInit(1);
     Mix_HaltMusic();

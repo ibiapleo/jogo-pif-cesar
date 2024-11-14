@@ -38,7 +38,7 @@ Certifique-se de que você tem um sistema operacional compatível (Linux ou macO
    cd projeto
 3. Compile o código:
    ```bash
-      g$ gcc ./src/*.c -I./include -lSDL2 -lSDL2_mixer -o Wobble_Wing
+      gcc ./src/*.c -I./include -lSDL2 -lSDL2_mixer -o ./build/Wobble_Wing
 
 4. Execute o jogo:
       ```bash
