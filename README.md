@@ -38,11 +38,12 @@ Certifique-se de que você tem um sistema operacional compatível (Linux ou macO
    cd projeto
 3. Compile o código:
    ```bash
-      gcc ./src/.c -I./include -o cli-lib-[A definir]
+      g$ gcc ./src/*.c -I./include -lSDL2 -lSDL2_mixer -o Wobble_Wing
 
 4. Execute o jogo:
       ```bash
-      ./build/[A definir]
+      ./Wobble_Wing
+
 ## Observações:
 - Este jogo utiliza a biblioteca CLI-lib para interações via terminal.
 - Windows não é suportado. Para jogar no Windows, recomenda-se utilizar uma máquina virtual ou ambiente WSL (Windows Subsystem for Linux), mas não é garantido que todas as funcionalidades do jogo funcionem corretamente.
